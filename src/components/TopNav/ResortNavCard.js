@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
   resortLogoContainer: {
     marginTop: 18,
     marginLeft: 18,
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
   },
   image:{
     width: '100%',
     backgroundColor: 'grey',
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
   },
   resortInfoContainer: {
     margin: 18,

@@ -11,7 +11,24 @@ import AdaptiveText from '../AdaptiveText/AdaptiveText';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
-import SunnyIcon from './SunnyIcon';
+import SunnyIcon from './WeatherIcons/SunnyIcon';
+import CloudyIcon from './WeatherIcons/CloudyIcon';
+import RainIcon from './WeatherIcons/RainIcon';
+import SnowIcon from './WeatherIcons/SnowIcon';
+import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
+
+import SierraLogo from '../ResortLogos/SierraLogo';
+import SquawLogo from '../ResortLogos/SquawLogo';
+import BorealLogo from '../ResortLogos/BorealLogo';
+import HeavenlyLogo from '../ResortLogos/HeavenlyLogo';
+import DiamondLogo from '../ResortLogos/DiamondLogo';
+import DonnerLogo from '../ResortLogos/DonnerLogo';
+import KirkwoodLogo from '../ResortLogos/KirkwoodLogo';
+import NorthstarLogo from '../ResortLogos/NorthstarLogo';
+import HomewoodLogo from '../ResortLogos/HomewoodLogo';
+import MtRoseLogo from '../ResortLogos/MtRoseLogo';
+import SugarLogo from '../ResortLogos/SugarLogo';
+
 
 const styles = StyleSheet.create({
   ResortInfoCardContentHeader: {
@@ -39,12 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image:{
-    width: '100%',
-    backgroundColor: 'grey',
-    height: 50,
-    width: 50,
-  },
   resortName: {
     marginLeft: 18,
     fontSize: 32,
@@ -53,7 +64,7 @@ const styles = StyleSheet.create({
   statusTitle: {
     fontSize: 24,
     fontWeight: '200',
-    marginLeft: 90,
+    marginLeft: 100,
   },
   statusContainer: {
     flex: 1,
@@ -71,7 +82,7 @@ const ResortInfoCardContentHeader = () => {
     <View style={styles.ResortInfoCardContentHeader}>
       <View style={styles.resortDescription}>
         <View style={styles.resortInfo}>
-          <Image style={styles.image}></Image>
+          <DiamondLogo />
           <AdaptiveText style={styles.resortName}>Squaw Valley</AdaptiveText>
         </View>
         <AdaptiveText style={styles.statusTitle}>Today’s Forecast</AdaptiveText>
@@ -81,7 +92,7 @@ const ResortInfoCardContentHeader = () => {
           <AdaptiveText style={styles.statusText}>Open</AdaptiveText>
         </View>
         <View style={styles.statusContainer}>
-          <SunnyIcon />
+          <ThunderStormIcon />
         </View>
       </View>
     </View>
