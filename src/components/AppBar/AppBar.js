@@ -8,11 +8,11 @@ import {
 
 import AdaptiveText from '../AdaptiveText/AdaptiveText';
 
-const APPBAR_HEIGHT = Platform.OS === 'ios' ? 65 : 56;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 
 const styles = StyleSheet.create({
   appBar: {
-    backgroundColor: '#4A4A4A',
+    backgroundColor: '#1ED2FF',
     justifyContent: 'center',
     alignItems: 'center',
     height: APPBAR_HEIGHT,
