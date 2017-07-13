@@ -4,6 +4,7 @@ import {
   View,
 } from 'react-native';
 import { Font } from 'expo';
+import { Bubbles } from 'react-native-loader';
 
 import StatusBar from './components/StatusBar/StatusBar';
 import AppBar from './components/AppBar/AppBar';
@@ -31,9 +32,12 @@ class App extends React.Component {
         <View
           style={{
             flex: 1,
-            backgroundColor: '#1ED2FF',
+            backgroundColor: '#FFFFFF',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
+         <Bubbles size={20} color='#4A4A4A'/>
         </View>
       );
     }

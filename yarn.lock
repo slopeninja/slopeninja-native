@@ -2876,6 +2876,10 @@ react-native-branch@2.0.0-beta.3:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-loader@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-loader/-/react-native-loader-1.1.0.tgz#9e87e88d5b0a03a26b28591b23da73408a189e47"
+
 "react-native-maps@https://github.com/expo/react-native-maps/archive/v0.14.0.tar.gz":
   version "0.14.0"
   resolved "https://github.com/expo/react-native-maps/archive/v0.14.0.tar.gz#993c90136e9370c693b423960fcb679b1c25cad8"
@@ -3660,11 +3664,7 @@ websql@^0.4.4:
     sqlite3 "^3.1.1"
     tiny-queue "^0.2.1"
 
-whatwg-fetch@>=0.10.0:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
-
-whatwg-fetch@^1.0.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.1.1.tgz#ac3c9d39f320c6dce5339969d054ef43dd333319"
 
