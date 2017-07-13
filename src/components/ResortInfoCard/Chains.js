@@ -5,7 +5,7 @@ import {
   Text,
 } from 'react-native';
 
-import HighwayIcon from './HighwayIcon';
+import HighwayIcon from '../HighwayIcons/HighwayIcon';
 import AdaptiveText from '../AdaptiveText/AdaptiveText';
 
 const styles = StyleSheet.create({
