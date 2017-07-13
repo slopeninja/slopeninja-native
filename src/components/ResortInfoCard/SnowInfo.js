@@ -5,7 +5,8 @@ import {
   Text,
 } from 'react-native';
 
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import BoldText from '../AdaptiveText/BoldText';
+import LightText from '../AdaptiveText/LightText';
 
 const styles = StyleSheet.create({
   snowInfoContainer: {
@@ -19,18 +20,16 @@ const styles = StyleSheet.create({
   },
   snowInfoTitle: {
     fontSize: 24,
-    fontWeight: '500',
   },
   snowInfoContent: {
     fontSize: 24,
-    fontWeight: '200',
   }
 });
 
 const SnowInfo = (props) => (
   <View style={styles.snowInfoContainer}>
-    <AdaptiveText style={styles.snowInfoTitle}>{ props.title }</AdaptiveText>
-    <AdaptiveText style={styles.snowInfoContent}>{ props.value }</AdaptiveText>
+    <BoldText style={styles.snowInfoTitle}>{ props.title }</BoldText>
+    <LightText style={styles.snowInfoContent}>{ props.value }</LightText>
   </View>
 )
 

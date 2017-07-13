@@ -10,7 +10,7 @@ import HighwayIcon from '../HighwayIcons/HighwayIcon';
 import IncidentIcon from '../HighwayIcons/IncidentIcon';
 import AmbiguousIcon from '../HighwayIcons/AmbiguousIcon';
 
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import BoldText from '../AdaptiveText/BoldText';
 
 const styles = StyleSheet.create({
   openRoutesContainer: {
@@ -33,11 +33,6 @@ const styles = StyleSheet.create({
   },
   openRoutesTitle: {
     fontSize: 24,
-    fontWeight: '500',
-  },
-  openRoutesContent: {
-    fontSize: 24,
-    fontWeight: '200',
   },
   exceptionIndicator: {
     zIndex: 999,
@@ -51,7 +46,7 @@ const styles = StyleSheet.create({
 
 const OpenRoutes = (props) => (
   <View style={styles.openRoutesContainer}>
-    <AdaptiveText style={styles.openRoutesTitle}>Open Routes</AdaptiveText>
+    <BoldText style={styles.openRoutesTitle}>Open Routes</BoldText>
     <View style={styles.highwayContainer}>
       <View style={styles.highwayIconContainer}>
         <HighwayIcon highwayNumber='88' />

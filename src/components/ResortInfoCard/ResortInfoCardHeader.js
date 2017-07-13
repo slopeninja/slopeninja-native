@@ -7,7 +7,8 @@ import {
   Text
 } from 'react-native';
 
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import BoldText from '../AdaptiveText/BoldText';
+import LightText from '../AdaptiveText/LightText';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -59,11 +60,9 @@ const styles = StyleSheet.create({
   resortName: {
     marginLeft: 18,
     fontSize: 32,
-    fontWeight: '500',
   },
   statusTitle: {
     fontSize: 24,
-    fontWeight: '200',
     marginLeft: 100,
   },
   statusContainer: {
@@ -73,7 +72,6 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: 32,
-    fontWeight: '100',
   },
 });
 
@@ -83,13 +81,13 @@ const ResortInfoCardContentHeader = () => {
       <View style={styles.resortDescription}>
         <View style={styles.resortInfo}>
           <DiamondLogo />
-          <AdaptiveText style={styles.resortName}>Squaw Valley</AdaptiveText>
+          <BoldText style={styles.resortName}>Squaw Valley</BoldText>
         </View>
-        <AdaptiveText style={styles.statusTitle}>Today’s Forecast</AdaptiveText>
+        <LightText style={styles.statusTitle}>Today’s Forecast</LightText>
       </View>
       <View style={styles.resortStatus}>
         <View style={styles.statusContainer}>
-          <AdaptiveText style={styles.statusText}>Open</AdaptiveText>
+          <LightText style={styles.statusText}>Open</LightText>
         </View>
         <View style={styles.statusContainer}>
           <ThunderStormIcon />

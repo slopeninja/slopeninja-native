@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import LightText from '../AdaptiveText/LightText';
 
 const styles = StyleSheet.create({
   resortNavCard: {
@@ -43,12 +43,10 @@ const styles = StyleSheet.create({
   },
   resortName: {
     fontSize: 24,
-    fontWeight: '200',
   },
   resortSubText: {
     color: '#9B9B9B',
     fontSize: 16,
-    fontWeight: '200',
   },
   progressBarContainer: {
     flex: 1,
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
   },
   processBarDescriptiion: {
     fontSize: 16,
-    fontWeight: '200',
     marginBottom: 10,
   }
 });
@@ -75,16 +72,16 @@ const ResortNavCard = ({ style }) => {
           </View>
           <View style={styles.resortInfoContainer}>
             <View style={styles.resortTitleContainer}>
-              <AdaptiveText style={styles.resortName}>Blah Blah</AdaptiveText>
-              <AdaptiveText style={styles.resortSubText}>Hello, CA</AdaptiveText>
+              <LightText style={styles.resortName}>Blah Blah</LightText>
+              <LightText style={styles.resortSubText}>Hello, CA</LightText>
             </View>
             <View style={styles.progressBarContainer}>
               <View style={styles.progressBarInfo}>
-                <AdaptiveText style={styles.processBarDescriptiion}>Open Lifts</AdaptiveText>
+                <LightText style={styles.processBarDescriptiion}>Open Lifts</LightText>
                 <ProgressBar small progress={15} />
               </View>
               <View style={styles.progressBarInfo}>
-                <AdaptiveText style={styles.processBarDescriptiion}>Open Trails</AdaptiveText>
+                <LightText style={styles.processBarDescriptiion}>Open Trails</LightText>
                 <ProgressBar small progress={15} />
               </View>
             </View>

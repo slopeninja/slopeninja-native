@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 
 import HighwayIcon from '../HighwayIcons/HighwayIcon';
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import LightText from '../AdaptiveText/LightText';
+import BoldText from '../AdaptiveText/BoldText';
 
 const styles = StyleSheet.create({
   chainsContainer: {
@@ -36,15 +37,9 @@ const styles = StyleSheet.create({
   },
   chainsTitle: {
     fontSize: 24,
-    fontWeight: '500',
-  },
-  chainsContent: {
-    fontSize: 24,
-    fontWeight: '200',
   },
   statusTitle: {
     fontSize: 24,
-    fontWeight: '100',
   },
   highwayIconContainer: {
     marginRight: 6,
@@ -55,11 +50,11 @@ const styles = StyleSheet.create({
 
 const Chains = (props) => (
   <View style={styles.chainsContainer}>
-    <AdaptiveText style={styles.chainsTitle}>Chains</AdaptiveText>
+    <BoldText style={styles.chainsTitle}>Chains</BoldText>
     <View style={styles.chainStatusContainer}>
       <View style={styles.chainsConditionContainer}>
         <View style={styles.chainStatusTitleContainer}>
-          <AdaptiveText style={styles.statusTitle}>R1</AdaptiveText>
+          <LightText style={styles.statusTitle}>R1</LightText>
         </View>
         <View style={styles.highwayIconContainer}>
           <HighwayIcon highwayNumber='88' width={36} height={36}/>
@@ -67,7 +62,7 @@ const Chains = (props) => (
       </View>
       <View style={styles.chainsConditionContainer}>
         <View style={styles.chainStatusTitleContainer}>
-          <AdaptiveText style={styles.statusTitle}>R2</AdaptiveText>
+          <LightText style={styles.statusTitle}>R2</LightText>
         </View>
         <View style={styles.highwayIconContainer}>
           <HighwayIcon highwayNumber='89' width={36} height={36}/>

@@ -5,7 +5,6 @@ import {
   TextInput
 } from 'react-native';
 
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
 import CancelIcon from './CancelIcon';
 import SearchIcon from './SearchIcon';
 
@@ -16,9 +15,6 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     flexDirection: 'row',
-  },
-  searchIconContainer: {
-    marginLeft: 12,
   },
   textInput: {
     flex: 1,

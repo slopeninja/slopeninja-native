@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
-import AdaptiveText from '../AdaptiveText/AdaptiveText';
+import BoldText from '../AdaptiveText/BoldText';
+import LightText from '../AdaptiveText/LightText';
 
 const styles = StyleSheet.create({
   progressBarContainer: {
@@ -40,13 +41,13 @@ const ProgressBars = ({ style }) => {
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarInfo}>
-        <AdaptiveText style={styles.processBarDescriptiion}>Open Lifts</AdaptiveText>
-        <AdaptiveText style={styles.processBarStats}>16</AdaptiveText>
+        <BoldText style={styles.processBarDescriptiion}>Open Lifts</BoldText>
+        <LightText style={styles.processBarStats}>16</LightText>
         <ProgressBar small={false} progress={100} />
       </View>
       <View style={styles.progressBarInfo}>
-        <AdaptiveText style={styles.processBarDescriptiion}>Open Trails</AdaptiveText>
-        <AdaptiveText style={styles.processBarStats}>30</AdaptiveText>
+        <BoldText style={styles.processBarDescriptiion}>Open Trails</BoldText>
+        <LightText style={styles.processBarStats}>30</LightText>
         <ProgressBar small={false} progress={15} />
       </View>
     </View>
