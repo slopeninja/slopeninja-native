@@ -1,6 +1,15 @@
 import Expo from 'expo';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry} from 'react-native';
+import { Provider } from 'react-redux';
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware,
+  compose,
+} from 'redux';
+import { addNavigationHelpers } from 'react-navigation';
+
 
 import App from './src/App';
 
