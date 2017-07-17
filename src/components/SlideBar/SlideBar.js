@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const TopNav = (props) => {
+const SlideBar = (props) => {
   return (
     <View style={styles.scrollViewWrapper}>
       <ScrollView
@@ -31,7 +31,9 @@ const TopNav = (props) => {
         showsHorizontalScrollIndicator={false}
         pagingEnabled={false}
       >
-        <ResortNavCard style={{ marginLeft: 18 }} />
+        <ResortNavCard
+          style={{ marginLeft: 18 }}
+        />
         <ResortNavCard style={{ marginLeft: 18 }} />
         <ResortNavCard style={{ marginLeft: 18 }} />
         <ResortNavCard style={{ marginLeft: 18 }} />
@@ -40,4 +42,4 @@ const TopNav = (props) => {
   );
 };
 
-export default TopNav;
+export default SlideBar;

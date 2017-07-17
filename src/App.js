@@ -1,26 +1,42 @@
-import React, { Component } from 'react';
+import Expo, { Font } from 'expo';
 import {
   StyleSheet,
   View,
+  Button
 } from 'react-native';
-import { Font } from 'expo';
+import React, { Component } from 'react';
 import { Bubbles } from 'react-native-loader';
 
-import StatusBar from './components/StatusBar/StatusBar';
-import AppBar from './components/AppBar/AppBar';
-import TopNav from './components/TopNav/TopNav';
-import ResortInfoCard from './components/ResortInfoCard/ResortInfoCard';
+import AppNavigator from './navigators/AppNavigator';
 
-class App extends React.Component {
-  state = {
-    fontsReady: false,
-  };
+import LatoBold from '../assets/fonts/Lato-Bold.ttf';
+import LatoRegular from '../assets/fonts/Lato-Regular.ttf';
+import LatoLight from '../assets/fonts/Lato-Light.ttf';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      fontsReady: false,
+    };
+  }
 
   async componentDidMount() {
     await Font.loadAsync({
-      'Lato Bold': require('../assets/fonts/Lato-Bold.ttf'),
-      'Lato Regular': require('../assets/fonts/Lato-Regular.ttf'),
-      'Lato Light': require('../assets/fonts/Lato-Light.ttf'),
+      'Lato Bold': LatoBold,
+      'Lato Regular': LatoRegular,
+      'Lato Light': LatoLight,
     });
 
     this.setState({ fontsReady: true });
@@ -29,33 +45,14 @@ class App extends React.Component {
   render() {
     if (!this.state.fontsReady) {
       return (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#FFFFFF',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-         <Bubbles size={20} color='#4A4A4A'/>
+        <View style={styles.container}>
+          <Bubbles size={20} color='#4A4A4A'/>
         </View>
       );
     }
 
     return (
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <StatusBar
-          backgroundColor="#1ED2FF"
-          barStyle="light-content"
-        />
-        <AppBar />
-        <TopNav />
-        <ResortInfoCard />
-      </View>
+      <AppNavigator />
     );
   }
 }

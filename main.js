@@ -1,35 +1,34 @@
 import Expo from 'expo';
-import React from 'react';
-import { StyleSheet, Text, View, AppRegistry} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import {
   createStore,
   combineReducers,
-  applyMiddleware,
-  compose,
 } from 'redux';
-import { addNavigationHelpers } from 'react-navigation';
-
+import { StackNavigator } from 'react-navigation';
 
 import App from './src/App';
 
-class SlopeNinjaIndex extends React.Component {
+/* reducers */
+import nav from './src/reducers/nav';
+
+const appReducer = combineReducers({
+  nav,
+});
+
+const store = createStore(
+  appReducer,
+);
+
+class SlopeNinja extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Provider store={store}>
         <App />
-      </View>
-    );
+      </Provider>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-Expo.registerRootComponent(App);
+Expo.registerRootComponent(SlopeNinja);

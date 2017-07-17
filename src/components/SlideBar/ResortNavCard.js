@@ -6,6 +6,11 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
+import { connect } from 'react-redux';
+
+import {
+  NavigationActions,
+} from 'react-navigation';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
 import LightText from '../AdaptiveText/LightText';
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ResortNavCard = ({ style }) => {
+const ResortNavCard = ({ style, changeScreen }) => {
   return (
     <View style={style}>
       <TouchableHighlight>

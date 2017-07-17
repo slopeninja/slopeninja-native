@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   View,
   Text,
   TouchableHighlight,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import HighwayIcon from '../HighwayIcons/HighwayIcon';
 import IncidentIcon from '../HighwayIcons/IncidentIcon';
@@ -50,7 +52,13 @@ const OpenRoutes = (props) => (
     <View style={styles.highwayContainer}>
       <View style={styles.highwayIconContainer}>
         <HighwayIcon highwayNumber='88' />
-        <TouchableHighlight style={styles.exceptionIndicator}>
+        <TouchableHighlight
+          style={styles.exceptionIndicator}
+          underlayColor='transparent'
+          onPress={() => {
+            props.openBrowser()
+          }}
+        >
           <View>
             <IncidentIcon />
           </View>
@@ -72,4 +80,11 @@ const OpenRoutes = (props) => (
   </View>
 )
 
-export default OpenRoutes;
+const mapDispatchToProps = dispatch => ({
+  openBrowser: () =>
+    dispatch(
+      NavigationActions.navigate({ routeName: 'Browser' })
+    ),
+});
+
+export default connect(null, mapDispatchToProps)(OpenRoutes);

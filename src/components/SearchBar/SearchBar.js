@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
   cancelIconContainer: {
     alignSelf: 'center',
   }
-
-
 });
 
 const SearchBar = (props) => {
