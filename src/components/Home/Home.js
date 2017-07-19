@@ -32,6 +32,7 @@ Home.navigationOptions = {
   header: (props) => (
     <HomeHeader {...props} />
   ),
+  gesturesEnabled: false,
 };
 
 export default Home;

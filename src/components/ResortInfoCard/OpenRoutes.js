@@ -56,7 +56,7 @@ const OpenRoutes = (props) => (
           style={styles.exceptionIndicator}
           underlayColor='transparent'
           onPress={() => {
-            props.openBrowser()
+            props.openBrowser('CA 88', 'http://dot.gov')
           }}
         >
           <View>
@@ -81,9 +81,15 @@ const OpenRoutes = (props) => (
 )
 
 const mapDispatchToProps = dispatch => ({
-  openBrowser: () =>
+  openBrowser: (title, url) =>
     dispatch(
-      NavigationActions.navigate({ routeName: 'Browser' })
+      NavigationActions.navigate({
+        routeName: 'Browser',
+        params: {
+          title,
+          url,
+        }
+      })
     ),
 });
 
