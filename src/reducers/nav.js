@@ -1,4 +1,3 @@
-import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
 const initialState = {
@@ -6,13 +5,12 @@ const initialState = {
   routes: [
     {
       key: 'Home_0123',
-      routeName: 'Home'
+      routeName: 'Home',
     },
   ],
 };
 
-const nav = (state = initialState, action) => {
-  return AppNavigator.router.getStateForAction(action, state);
-};
+const nav = (state = initialState, action) =>
+  AppNavigator.router.getStateForAction(action, state);
 
 export default nav;

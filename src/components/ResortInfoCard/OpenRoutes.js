@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableHighlight,
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     padding: 18,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#EDEDED',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   highwayContainer: {
     flexDirection: 'row',
@@ -43,24 +42,20 @@ const styles = StyleSheet.create({
     top: -8,
     width: 20,
     height: 20,
-  }
+  },
 });
 
 const OpenRoutes = ({ roads, openBrowser }) => {
   const highwayIcons = roads.map((road) => {
-    const iconStyle = {
-      opacity: (road.status === 'closed') ? 0.1 : 1,
-    };
-
     let incidentIcon;
     if (road.status === 'incident') {
       incidentIcon = (
         <TouchableHighlight
           hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
           style={styles.exceptionIndicator}
-          underlayColor='transparent'
+          underlayColor="transparent"
           onPress={() => {
-            openBrowser(`${road.prefix} ${road.number}`, road.sourceUrl)
+            openBrowser(`${road.prefix} ${road.number}`, road.sourceUrl);
           }}
         >
           <View>
@@ -76,9 +71,9 @@ const OpenRoutes = ({ roads, openBrowser }) => {
         <TouchableHighlight
           hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
           style={styles.exceptionIndicator}
-          underlayColor='transparent'
+          underlayColor="transparent"
           onPress={() => {
-            props.openBrowser('CA 88', 'http://dot.gov')
+            openBrowser(`${road.prefix} ${road.number}`, road.sourceUrl);
           }}
         >
           <View>
@@ -88,9 +83,13 @@ const OpenRoutes = ({ roads, openBrowser }) => {
       );
     }
 
+    const iconStyle = {
+      opacity: (road.status === 'closed') ? 0.1 : 1,
+    };
+
     return (
       <View
-        style={styles.highwayIconContainer}
+        style={[styles.highwayIconContainer, iconStyle]}
         key={road.number}
       >
         <HighwayIcon
@@ -99,7 +98,7 @@ const OpenRoutes = ({ roads, openBrowser }) => {
         {incidentIcon}
         {ambiguousIcon}
       </View>
-    )
+    );
   });
 
   return (
@@ -109,8 +108,8 @@ const OpenRoutes = ({ roads, openBrowser }) => {
         {highwayIcons}
       </View>
     </View>
-  )
-}
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   openBrowser: (title, url) =>
@@ -120,8 +119,8 @@ const mapDispatchToProps = dispatch => ({
         params: {
           title,
           url,
-        }
-      })
+        },
+      }),
     ),
 });
 

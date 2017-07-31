@@ -2,7 +2,6 @@ import React from 'react';
 import {
   StyleSheet,
   ScrollView,
-  Text,
   Dimensions,
 } from 'react-native';
 
@@ -19,15 +18,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ResortInfoCard = ({ resort }) => {
-  return (
-    <ScrollView style={styles.resortInfoCard}>
-      <ResortInfoCardHeader resort={resort}/>
-      <ResortInfoCardBody
-        resort={resort}
-      />
-    </ScrollView>
-  );
-};
+const ResortInfoCard = ({ resort }) => (
+  <ScrollView style={styles.resortInfoCard}>
+    <ResortInfoCardHeader resort={resort} />
+    <ResortInfoCardBody
+      resort={resort}
+    />
+  </ScrollView>
+);
 
 export default ResortInfoCard;

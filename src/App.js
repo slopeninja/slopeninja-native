@@ -1,8 +1,7 @@
-import Expo, { Font } from 'expo';
+import { Font } from 'expo';
 import {
   StyleSheet,
   View,
-  Button
 } from 'react-native';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
 class App extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       fontsReady: false,
@@ -41,13 +40,13 @@ class App extends Component {
     });
 
     this.setState({ fontsReady: true });
-  };
+  }
 
   render() {
     if (!this.state.fontsReady) {
       return (
         <View style={styles.container}>
-          <Bubbles size={20} color='#4A4A4A'/>
+          <Bubbles size={20} color="#4A4A4A" />
         </View>
       );
     }

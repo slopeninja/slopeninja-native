@@ -1,13 +1,11 @@
 import Expo from 'expo';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import {
   createStore,
   combineReducers,
   applyMiddleware,
 } from 'redux';
-import { StackNavigator } from 'react-navigation';
 import reduxThunk from 'redux-thunk';
 
 import App from './src/App';
@@ -40,7 +38,7 @@ class SlopeNinja extends Component {
       <Provider store={store}>
         <App />
       </Provider>
-    )
+    );
   }
 }
 

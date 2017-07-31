@@ -2,9 +2,6 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Image,
-  Text,
-  TouchableHighlight,
 } from 'react-native';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
@@ -34,10 +31,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '100',
     marginBottom: 18,
-  }
+  },
 });
 
-const ProgressBars = ({ style, liftCounts, trailCounts }) => {
+const ProgressBars = ({ liftCounts, trailCounts }) => {
   const liftsProgress = Math.ceil(
     (liftCounts.open / liftCounts.total) * 100,
   );

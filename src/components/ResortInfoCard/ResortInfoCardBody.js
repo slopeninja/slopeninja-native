@@ -3,9 +3,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  Image,
-  Text,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 import SnowInfo from './SnowInfo';
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
   resortInfoBodyRow: {
     flexDirection: 'row',
     // height: 120,
-  }
+  },
 });
 
 const ResortInfoCardContentBody = ({ resort }) => {
@@ -35,21 +33,21 @@ const ResortInfoCardContentBody = ({ resort }) => {
   return (
     <ScrollView style={styles.ResortInfoCardContentBody}>
       <View style={styles.resortInfoBodyRow}>
-        <SnowInfo title='Temperature' value={temperature} />
-        <SnowInfo title='Base Condition' value={base} />
+        <SnowInfo title="Temperature" value={temperature} />
+        <SnowInfo title="Base Condition" value={base} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <SnowInfo title='New Snow' value={newSnow} />
-        <SnowInfo title='Snow Depth' value={snowDepth} />
+        <SnowInfo title="New Snow" value={newSnow} />
+        <SnowInfo title="Snow Depth" value={snowDepth} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <OpenRoutes roads={resort.roads}/>
+        <OpenRoutes roads={resort.roads} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <Chains roads={resort.roads}/>
+        <Chains roads={resort.roads} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <ProgressBars liftCounts={resort.liftCounts} trailCounts={resort.trailCounts}/>
+        <ProgressBars liftCounts={resort.liftCounts} trailCounts={resort.trailCounts} />
       </View>
     </ScrollView>
   );

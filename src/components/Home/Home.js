@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
 
-import StatusBar from '../StatusBar/StatusBar';
 import SlideBar from '../SlideBar/SlideBar';
 import ResortInfoCard from '../ResortInfoCard/ResortInfoCard';
 
@@ -29,26 +27,25 @@ class Home extends Component {
     super(props);
     this.state = {
       currentResort: null,
-    }
+    };
     this.handleResortClick = this.handleResortClick.bind(this);
-  }
-
-  handleResortClick(currentResort) {
-    this.setState({
-      currentResort,
-    })
   }
 
   componentDidMount() {
     this.props.fetchResorts();
   }
 
-  render() {
+  handleResortClick(currentResort) {
+    this.setState({
+      currentResort,
+    });
+  }
 
+  render() {
     if (this.props.resortsStatus !== 'success') {
       return (
         <View style={styles.container}>
-          <Bubbles size={20} color='#4A4A4A'/>
+          <Bubbles size={20} color="#4A4A4A" />
         </View>
       );
     }
@@ -61,7 +58,7 @@ class Home extends Component {
     let resorts = this.props.resorts;
     if (this.props.keyword) {
       resorts = resorts.filter(
-        resort => resort.name.toUpperCase().includes(this.props.keyword.toUpperCase())
+        singleResort => singleResort.name.toUpperCase().includes(this.props.keyword.toUpperCase()),
       );
     }
 
@@ -87,7 +84,7 @@ class Home extends Component {
 
 Home.navigationOptions = {
   title: 'Home',
-  header: (props) => (
+  header: props => (
     <HomeHeader {...props} />
   ),
   gesturesEnabled: false,

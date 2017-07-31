@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   WebView,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import BrowserHeader from './BrowserHeader';
 
@@ -16,26 +14,24 @@ const styles = StyleSheet.create({
   },
 });
 
-class Browser extends Component {
-  render() {
-    const url = this.props.navigation.state.params.url;
+const Browser = (props) => {
+  const url = props.navigation.state.params.url;
 
-    return (
-      <View style = {styles.container}>
-        <WebView
-          style={{
-            flex: 1,
-          }}
-          source={{uri: url}}
-        />
-      </View>
-    )
-  }
-}
+  return (
+    <View style={styles.container}>
+      <WebView
+        style={{
+          flex: 1,
+        }}
+        source={{ uri: url }}
+      />
+    </View>
+  );
+};
 
 Browser.navigationOptions = {
   title: 'Browser',
-  header: (headerProps) => (
+  header: headerProps => (
     <BrowserHeader {...headerProps} />
   ),
   gesturesEnabled: false,

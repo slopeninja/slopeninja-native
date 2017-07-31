@@ -3,14 +3,10 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  Image,
-  Text
 } from 'react-native';
 
 import BoldText from '../AdaptiveText/BoldText';
 import LightText from '../AdaptiveText/LightText';
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
 
 import SunnyIcon from './WeatherIcons/SunnyIcon';
 import CloudyIcon from './WeatherIcons/CloudyIcon';
@@ -18,17 +14,18 @@ import RainIcon from './WeatherIcons/RainIcon';
 import SnowIcon from './WeatherIcons/SnowIcon';
 import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
 
-const weatherIcons = {
-  'sunny': SunnyIcon,
-  'clear': SunnyIcon,
-  'cloudy': CloudyIcon,
-  'rain': RainIcon,
-  'snow': SnowIcon,
-  'thundrstorm': ThunderStormIcon,
-};
-
 import { resortLogos } from '../SlideBar/ResortNavCard';
 
+
+const weatherIcons = {
+  sunny: SunnyIcon,
+  clear: SunnyIcon,
+  cloudy: CloudyIcon,
+  rain: RainIcon,
+  snow: SnowIcon,
+  thundrstorm: ThunderStormIcon,
+};
+const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   ResortInfoCardContentHeader: {
@@ -88,7 +85,7 @@ const ResortInfoCardContentHeader = ({ resort }) => {
       </View>
       <View style={styles.resortStatus}>
         <View style={styles.statusContainer}>
-          <LightText style={styles.statusText}>{resort.status ===  'open' ? 'Open' : 'Closed'}</LightText>
+          <LightText style={styles.statusText}>{resort.status === 'open' ? 'Open' : 'Closed'}</LightText>
         </View>
         <View style={styles.statusContainer}>
           <WeatherIcon />

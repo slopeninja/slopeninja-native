@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  ScrollView,
   View,
-  TouchableHighlight
 } from 'react-native';
 
 
@@ -26,12 +24,12 @@ const styles = StyleSheet.create({
     height: '100%',
     // transition: 'width 0.5s',
     backgroundColor: '#4A4A4A',
-  }
+  },
 
 });
 
 const ProgressBar = ({ small = false, progress = 0 }) => {
-  let progressBarSizeStyle = small ? styles.progressBarBoxSmall : styles.progressBarBoxRegular;
+  const progressBarSizeStyle = small ? styles.progressBarBoxSmall : styles.progressBarBoxRegular;
 
   const widthStyle = {
     width: `${progress}%`,

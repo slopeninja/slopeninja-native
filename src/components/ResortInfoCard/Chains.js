@@ -2,7 +2,6 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
 } from 'react-native';
 
 import HighwayIcon from '../HighwayIcons/HighwayIcon';
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
     padding: 18,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#EDEDED',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   chainStatusContainer: {
     flexDirection: 'column',
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
   chainsConditionContainer: {
     marginRight: 6,
     marginLeft: 6,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   chainsTitle: {
     fontSize: 24,
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
   highwayIconContainer: {
     marginRight: 6,
     marginLeft: 6,
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 });
 
 const Chains = ({ roads }) => {
@@ -116,7 +115,7 @@ const Chains = ({ roads }) => {
     );
   }
 
-  return(
+  return (
     <View style={styles.chainsContainer}>
       <BoldText style={styles.chainsTitle}>Chains</BoldText>
       <View style={styles.chainStatusContainer}>
@@ -125,7 +124,7 @@ const Chains = ({ roads }) => {
         {noChainRow}
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default Chains;

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SlopeNinjaStatusBar = ({backgroundColor, ...props}) => (
+const SlopeNinjaStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
     <StatusBar backgroundColor={backgroundColor} {...props} />
   </View>

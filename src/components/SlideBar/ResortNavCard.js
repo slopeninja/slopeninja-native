@@ -2,15 +2,8 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  Image,
-  Text,
   TouchableHighlight,
 } from 'react-native';
-import { connect } from 'react-redux';
-
-import {
-  NavigationActions,
-} from 'react-navigation';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
 import LightText from '../AdaptiveText/LightText';
@@ -28,14 +21,14 @@ import SquawLogo from '../ResortLogos/SquawLogo';
 import SugarLogo from '../ResortLogos/SugarLogo';
 
 export const resortLogos = {
-  'boreal': BorealLogo,
+  boreal: BorealLogo,
   'diamond-peak': DiamondLogo,
   'donner-ski-ranch': DonnerLogo,
-  'heavenly': HeavenlyLogo,
-  'homewood': HomewoodLogo,
-  'kirkwood': KirkwoodLogo,
+  heavenly: HeavenlyLogo,
+  homewood: HomewoodLogo,
+  kirkwood: KirkwoodLogo,
   'mt-rose': MtRoseLogo,
-  'northstar': NorthstarLogo,
+  northstar: NorthstarLogo,
   'sierra-at-tahoe': SierraLogo,
   'squaw-valley': SquawLogo,
   'alpine-meadows': SquawLogo,
@@ -57,8 +50,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
   },
-  image:{
-    width: '100%',
+  image: {
     backgroundColor: 'grey',
     height: 60,
     width: 60,
@@ -91,7 +83,7 @@ const styles = StyleSheet.create({
   processBarDescriptiion: {
     fontSize: 16,
     marginBottom: 10,
-  }
+  },
 });
 
 const ResortNavCard = ({ style, resort, onResortClick }) => {

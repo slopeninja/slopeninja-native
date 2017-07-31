@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Button,
   Platform,
   TouchableHighlight,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import BoldText from '../AdaptiveText/BoldText';
 
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
     height: APPBAR_HEIGHT,
     flexDirection: 'row',
     paddingLeft: 12,
-    paddingRight: 12
+    paddingRight: 12,
   },
   titleContainer: {
     flex: 1,
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFFFFF',
     fontSize: 20,
-  }
+  },
 });
 
 class BrowserHeader extends Component {
@@ -50,8 +48,8 @@ class BrowserHeader extends Component {
         <View style={styles.container}>
           <TouchableHighlight
             hitSlop={{ top: 16, left: 16, bottom: 16, right: 20 }}
-            underlayColor='transparent'
-            onPress={()=> {
+            underlayColor="transparent"
+            onPress={() => {
               this.props.navigation.goBack();
             }}
           >
@@ -66,7 +64,7 @@ class BrowserHeader extends Component {
           </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
