@@ -26,25 +26,30 @@ const styles = StyleSheet.create({
   }
 });
 
-const ResortInfoCardContentBody = () => {
+const ResortInfoCardContentBody = ({ resort }) => {
+  const temperature = resort.weather.temperature !== null ? `${resort.weather.temperature}"` : '-';
+  const base = resort.weather.base !== null ? `${resort.weather.base}"` : '-';
+  const snowDepth = resort.weather.snowDepth !== null ? `${resort.weather.snowDepth}"` : '-';
+  const newSnow = resort.weather.newSnow !== null ? `${resort.weather.newSnow}"` : '-';
+
   return (
     <ScrollView style={styles.ResortInfoCardContentBody}>
       <View style={styles.resortInfoBodyRow}>
-        <SnowInfo title='Temperature' value='123' />
-        <SnowInfo title='Base Condition' value='123' />
+        <SnowInfo title='Temperature' value={temperature} />
+        <SnowInfo title='Base Condition' value={base} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <SnowInfo title='New Snow' value='123' />
-        <SnowInfo title='Snow Depth' value='123' />
+        <SnowInfo title='New Snow' value={newSnow} />
+        <SnowInfo title='Snow Depth' value={snowDepth} />
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <OpenRoutes />
+        <OpenRoutes roads={resort.roads}/>
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <Chains />
+        <Chains roads={resort.roads}/>
       </View>
       <View style={styles.resortInfoBodyRow}>
-        <ProgressBars />
+        <ProgressBars liftCounts={resort.liftCounts} trailCounts={resort.trailCounts}/>
       </View>
     </ScrollView>
   );

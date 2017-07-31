@@ -37,18 +37,26 @@ const styles = StyleSheet.create({
   }
 });
 
-const ProgressBars = ({ style }) => {
+const ProgressBars = ({ style, liftCounts, trailCounts }) => {
+  const liftsProgress = Math.ceil(
+    (liftCounts.open / liftCounts.total) * 100,
+  );
+
+  const trailsProgress = Math.ceil(
+    (trailCounts.open / trailCounts.total) * 100,
+  );
+
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarInfo}>
         <BoldText style={styles.processBarDescriptiion}>Open Lifts</BoldText>
-        <LightText style={styles.processBarStats}>16</LightText>
-        <ProgressBar small={false} progress={100} />
+        <LightText style={styles.processBarStats}>{liftCounts.open}</LightText>
+        <ProgressBar small={false} progress={liftsProgress} />
       </View>
       <View style={styles.progressBarInfo}>
         <BoldText style={styles.processBarDescriptiion}>Open Trails</BoldText>
-        <LightText style={styles.processBarStats}>30</LightText>
-        <ProgressBar small={false} progress={15} />
+        <LightText style={styles.processBarStats}>{trailCounts.open}</LightText>
+        <ProgressBar small={false} progress={trailsProgress} />
       </View>
     </View>
   );

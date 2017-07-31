@@ -5,6 +5,8 @@ import {
   View,
   TouchableHighlight
 } from 'react-native';
+import { Bubbles } from 'react-native-loader';
+import { RegularText } from '../AdaptiveText/RegularText';
 
 import ResortNavCard from './ResortNavCard';
 
@@ -22,7 +24,53 @@ const styles = StyleSheet.create({
   }
 });
 
-const SlideBar = (props) => {
+const LoadingIndicator = () => (
+  <View
+    style={{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <Bubbles size={20} color='#4A4A4A'/>
+  </View>
+);
+
+const ErrorIndicator = () => (
+  <View
+    style={{
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <RegularText>Opps. Something{'\''}s not right.</RegularText>
+  </View>
+);
+
+const SlideBar = ({ resorts, onResortClick }) => {
+  resorts.sort((a, b) => {
+    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const sideNavContent = resorts.map(resort => (
+    <ResortNavCard
+      key={resort.shortName}
+      resort={resort}
+      style={{ marginLeft: 18 }}
+      onResortClick={onResortClick}
+    />
+  ));
+
   return (
     <View style={styles.scrollViewWrapper}>
       <ScrollView
@@ -31,12 +79,7 @@ const SlideBar = (props) => {
         showsHorizontalScrollIndicator={false}
         pagingEnabled={false}
       >
-        <ResortNavCard
-          style={{ marginLeft: 18 }}
-        />
-        <ResortNavCard style={{ marginLeft: 18 }} />
-        <ResortNavCard style={{ marginLeft: 18 }} />
-        <ResortNavCard style={{ marginLeft: 18 }} />
+        {sideNavContent}
       </ScrollView>
     </View>
   );

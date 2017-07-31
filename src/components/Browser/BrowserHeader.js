@@ -49,6 +49,7 @@ class BrowserHeader extends Component {
         />
         <View style={styles.container}>
           <TouchableHighlight
+            hitSlop={{ top: 16, left: 16, bottom: 16, right: 20 }}
             underlayColor='transparent'
             onPress={()=> {
               this.props.navigation.goBack();

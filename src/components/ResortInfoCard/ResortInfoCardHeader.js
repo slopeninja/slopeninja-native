@@ -18,17 +18,16 @@ import RainIcon from './WeatherIcons/RainIcon';
 import SnowIcon from './WeatherIcons/SnowIcon';
 import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
 
-import SierraLogo from '../ResortLogos/SierraLogo';
-import SquawLogo from '../ResortLogos/SquawLogo';
-import BorealLogo from '../ResortLogos/BorealLogo';
-import HeavenlyLogo from '../ResortLogos/HeavenlyLogo';
-import DiamondLogo from '../ResortLogos/DiamondLogo';
-import DonnerLogo from '../ResortLogos/DonnerLogo';
-import KirkwoodLogo from '../ResortLogos/KirkwoodLogo';
-import NorthstarLogo from '../ResortLogos/NorthstarLogo';
-import HomewoodLogo from '../ResortLogos/HomewoodLogo';
-import MtRoseLogo from '../ResortLogos/MtRoseLogo';
-import SugarLogo from '../ResortLogos/SugarLogo';
+const weatherIcons = {
+  'sunny': SunnyIcon,
+  'clear': SunnyIcon,
+  'cloudy': CloudyIcon,
+  'rain': RainIcon,
+  'snow': SnowIcon,
+  'thundrstorm': ThunderStormIcon,
+};
+
+import { resortLogos } from '../SlideBar/ResortNavCard';
 
 
 const styles = StyleSheet.create({
@@ -75,22 +74,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const ResortInfoCardContentHeader = () => {
+const ResortInfoCardContentHeader = ({ resort }) => {
+  const ResortLogo = resortLogos[resort.shortName] || resortLogos.northstar;
+  const WeatherIcon = weatherIcons[resort.weather.condition];
   return (
     <View style={styles.ResortInfoCardContentHeader}>
       <View style={styles.resortDescription}>
         <View style={styles.resortInfo}>
-          <DiamondLogo />
-          <BoldText style={styles.resortName}>Squaw Valley</BoldText>
+          <ResortLogo />
+          <BoldText style={styles.resortName}>{resort.name}</BoldText>
         </View>
         <LightText style={styles.statusTitle}>Today’s Forecast</LightText>
       </View>
       <View style={styles.resortStatus}>
         <View style={styles.statusContainer}>
-          <LightText style={styles.statusText}>Open</LightText>
+          <LightText style={styles.statusText}>{resort.status ===  'open' ? 'Open' : 'Closed'}</LightText>
         </View>
         <View style={styles.statusContainer}>
-          <ThunderStormIcon />
+          <WeatherIcon />
         </View>
       </View>
     </View>

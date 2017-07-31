@@ -5,6 +5,7 @@ import {
   Button
 } from 'react-native';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
 
 import AppNavigator from './navigators/AppNavigator';
@@ -57,4 +58,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    resortsStatus: state.app.resorts.resortsStatus,
+  };
+};
+
+
+const ConnectedApp = connect(mapStateToProps, null)(App);
+
+export default ConnectedApp;

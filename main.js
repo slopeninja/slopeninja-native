@@ -5,20 +5,33 @@ import { Provider } from 'react-redux';
 import {
   createStore,
   combineReducers,
+  applyMiddleware,
 } from 'redux';
 import { StackNavigator } from 'react-navigation';
+import reduxThunk from 'redux-thunk';
 
 import App from './src/App';
 
 /* reducers */
 import nav from './src/reducers/nav';
+import resorts from './src/reducers/resorts';
 
-const appReducer = combineReducers({
+
+const app = combineReducers({
+  resorts,
+});
+
+const rootReducer = combineReducers({
+  app,
   nav,
 });
 
 const store = createStore(
-  appReducer,
+  rootReducer,
+  applyMiddleware(
+    // middleware for intercepting and dispatching navigation actions
+    reduxThunk,
+  ),
 );
 
 class SlopeNinja extends Component {

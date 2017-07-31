@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const nav = (state = initialState, action) => {
-  console.log(state, action);
   return AppNavigator.router.getStateForAction(action, state);
 };
 

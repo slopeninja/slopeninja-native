@@ -15,6 +15,33 @@ import {
 import ProgressBar from '../ProgressBar/ProgressBar';
 import LightText from '../AdaptiveText/LightText';
 
+import BorealLogo from '../ResortLogos/BorealLogo';
+import DiamondLogo from '../ResortLogos/DiamondLogo';
+import DonnerLogo from '../ResortLogos/DonnerLogo';
+import HeavenlyLogo from '../ResortLogos/HeavenlyLogo';
+import HomewoodLogo from '../ResortLogos/HomewoodLogo';
+import KirkwoodLogo from '../ResortLogos/KirkwoodLogo';
+import MtRoseLogo from '../ResortLogos/MtRoseLogo';
+import NorthstarLogo from '../ResortLogos/NorthstarLogo';
+import SierraLogo from '../ResortLogos/SierraLogo';
+import SquawLogo from '../ResortLogos/SquawLogo';
+import SugarLogo from '../ResortLogos/SugarLogo';
+
+export const resortLogos = {
+  'boreal': BorealLogo,
+  'diamond-peak': DiamondLogo,
+  'donner-ski-ranch': DonnerLogo,
+  'heavenly': HeavenlyLogo,
+  'homewood': HomewoodLogo,
+  'kirkwood': KirkwoodLogo,
+  'mt-rose': MtRoseLogo,
+  'northstar': NorthstarLogo,
+  'sierra-at-tahoe': SierraLogo,
+  'squaw-valley': SquawLogo,
+  'alpine-meadows': SquawLogo,
+  'sugar-bowl': SugarLogo,
+};
+
 const styles = StyleSheet.create({
   resortNavCard: {
     borderWidth: 1,
@@ -67,27 +94,40 @@ const styles = StyleSheet.create({
   }
 });
 
-const ResortNavCard = ({ style, changeScreen }) => {
+const ResortNavCard = ({ style, resort, onResortClick }) => {
+  const liftsProgress = Math.ceil(
+    (resort.liftCounts.open / resort.liftCounts.total) * 100,
+  );
+
+  const trailsProgress = Math.ceil(
+    (resort.trailCounts.open / resort.trailCounts.total) * 100,
+  );
+
+  const ResortLogo = resortLogos[resort.shortName];
+
   return (
     <View style={style}>
-      <TouchableHighlight>
+      <TouchableHighlight
+        underlayColor={'transparent'}
+        onPress={() => onResortClick(resort)}
+      >
         <View style={styles.resortNavCard}>
           <View style={styles.resortLogoContainer}>
-            <Image style={styles.image}></Image>
+            <ResortLogo />
           </View>
           <View style={styles.resortInfoContainer}>
             <View style={styles.resortTitleContainer}>
-              <LightText style={styles.resortName}>Blah Blah</LightText>
-              <LightText style={styles.resortSubText}>Hello, CA</LightText>
+              <LightText style={styles.resortName}>{resort.name}</LightText>
+              <LightText style={styles.resortSubText}>{resort.location}</LightText>
             </View>
             <View style={styles.progressBarContainer}>
               <View style={styles.progressBarInfo}>
                 <LightText style={styles.processBarDescriptiion}>Open Lifts</LightText>
-                <ProgressBar small progress={15} />
+                <ProgressBar small progress={liftsProgress} />
               </View>
               <View style={styles.progressBarInfo}>
                 <LightText style={styles.processBarDescriptiion}>Open Trails</LightText>
-                <ProgressBar small progress={15} />
+                <ProgressBar small progress={trailsProgress} />
               </View>
             </View>
           </View>

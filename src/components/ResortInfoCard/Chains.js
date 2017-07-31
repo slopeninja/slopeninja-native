@@ -48,32 +48,84 @@ const styles = StyleSheet.create({
   }
 });
 
-const Chains = (props) => (
-  <View style={styles.chainsContainer}>
-    <BoldText style={styles.chainsTitle}>Chains</BoldText>
-    <View style={styles.chainStatusContainer}>
+const Chains = ({ roads }) => {
+  const R1Highways = roads.filter(key => key.chainStatus === 'R1');
+  const R2Highways = roads.filter(key => key.chainStatus === 'R2');
+
+  const r1HighwayIcons = R1Highways.map(
+    key => (
+      <View
+        style={styles.highwayIconContainer}
+        key={key.number}
+      >
+        <HighwayIcon
+          highwayNumber={key.number}
+          width={36}
+          height={36}
+        />
+      </View>
+    ),
+  );
+  const r2HighwayIcons = R2Highways.map(
+    key => (
+      <View
+        style={styles.highwayIconContainer}
+        key={key.number}
+      >
+        <HighwayIcon
+          highwayNumber={key.number}
+          width={36}
+          height={36}
+        />
+      </View>
+    ),
+  );
+
+  let r1Row;
+  if (r1HighwayIcons.length > 0) {
+    r1Row = (
       <View style={styles.chainsConditionContainer}>
         <View style={styles.chainStatusTitleContainer}>
           <LightText style={styles.statusTitle}>R1</LightText>
         </View>
-        <View style={styles.highwayIconContainer}>
-          <HighwayIcon highwayNumber='88' width={36} height={36}/>
-        </View>
+        {r1HighwayIcons}
       </View>
+    );
+  }
+
+  let r2Row;
+  if (r2HighwayIcons.length > 0) {
+    r2Row = (
       <View style={styles.chainsConditionContainer}>
         <View style={styles.chainStatusTitleContainer}>
           <LightText style={styles.statusTitle}>R2</LightText>
         </View>
-        <View style={styles.highwayIconContainer}>
-          <HighwayIcon highwayNumber='89' width={36} height={36}/>
-        </View>
-        <View style={styles.highwayIconContainer}>
-          <HighwayIcon highwayNumber='580' width={36} height={36}/>
-        </View>
+        {r2HighwayIcons}
+      </View>
+    );
+  }
+
+  let noChainRow;
+  if (!r1Row && !r2Row) {
+    noChainRow = (
+      <View>
+        <LightText style={styles.statusTitle}>
+          No chains required.
+        </LightText>
+      </View>
+    );
+  }
+
+  return(
+    <View style={styles.chainsContainer}>
+      <BoldText style={styles.chainsTitle}>Chains</BoldText>
+      <View style={styles.chainStatusContainer}>
+        {r1Row}
+        {r2Row}
+        {noChainRow}
       </View>
     </View>
-
-  </View>
-)
+  )
+}
 
 export default Chains;

@@ -19,11 +19,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ResortInfoCard = () => {
+const ResortInfoCard = ({ resort }) => {
   return (
     <ScrollView style={styles.resortInfoCard}>
-      <ResortInfoCardHeader />
-      <ResortInfoCardBody />
+      <ResortInfoCardHeader resort={resort}/>
+      <ResortInfoCardBody
+        resort={resort}
+      />
     </ScrollView>
   );
 };

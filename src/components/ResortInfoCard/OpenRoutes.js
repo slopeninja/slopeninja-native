@@ -46,13 +46,35 @@ const styles = StyleSheet.create({
   }
 });
 
-const OpenRoutes = (props) => (
-  <View style={styles.openRoutesContainer}>
-    <BoldText style={styles.openRoutesTitle}>Open Routes</BoldText>
-    <View style={styles.highwayContainer}>
-      <View style={styles.highwayIconContainer}>
-        <HighwayIcon highwayNumber='88' />
+const OpenRoutes = ({ roads, openBrowser }) => {
+  const highwayIcons = roads.map((road) => {
+    const iconStyle = {
+      opacity: (road.status === 'closed') ? 0.1 : 1,
+    };
+
+    let incidentIcon;
+    if (road.status === 'incident') {
+      incidentIcon = (
         <TouchableHighlight
+          hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+          style={styles.exceptionIndicator}
+          underlayColor='transparent'
+          onPress={() => {
+            openBrowser(`${road.prefix} ${road.number}`, road.sourceUrl)
+          }}
+        >
+          <View>
+            <IncidentIcon />
+          </View>
+        </TouchableHighlight>
+      );
+    }
+
+    let ambiguousIcon;
+    if (road.status === 'ambiguous') {
+      ambiguousIcon = (
+        <TouchableHighlight
+          hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
           style={styles.exceptionIndicator}
           underlayColor='transparent'
           onPress={() => {
@@ -60,25 +82,35 @@ const OpenRoutes = (props) => (
           }}
         >
           <View>
-            <IncidentIcon />
-          </View>
-        </TouchableHighlight>
-      </View>
-      <View style={styles.highwayIconContainer}>
-        <HighwayIcon highwayNumber='89' />
-      </View>
-      <View style={styles.highwayIconContainer}>
-        <HighwayIcon highwayNumber='580' />
-        <TouchableHighlight style={styles.exceptionIndicator}>
-          <View>
             <AmbiguousIcon />
           </View>
         </TouchableHighlight>
+      );
+    }
+
+    return (
+      <View
+        style={styles.highwayIconContainer}
+        key={road.number}
+      >
+        <HighwayIcon
+          highwayNumber={road.number}
+        />
+        {incidentIcon}
+        {ambiguousIcon}
+      </View>
+    )
+  });
+
+  return (
+    <View style={styles.openRoutesContainer}>
+      <BoldText style={styles.openRoutesTitle}>Open Routes</BoldText>
+      <View style={styles.highwayContainer}>
+        {highwayIcons}
       </View>
     </View>
-
-  </View>
-)
+  )
+}
 
 const mapDispatchToProps = dispatch => ({
   openBrowser: (title, url) =>
