@@ -13,13 +13,14 @@ const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   resortInfoCard: {
-    // backgroundColor: 'red',
     width: DEVICE_WIDTH,
   },
 });
 
 const ResortInfoCard = ({ resort }) => (
-  <ScrollView style={styles.resortInfoCard}>
+  <ScrollView
+    style={styles.resortInfoCard}
+  >
     <ResortInfoCardHeader resort={resort} />
     <ResortInfoCardBody
       resort={resort}

@@ -2,6 +2,7 @@ import {
   FETCH_RESORTS,
   FETCH_RESORTS_SUCCESS,
   FETCH_RESORTS_FAIL,
+  CHANGE_SEARCH_KEYWORD,
 } from '../reducers/resorts';
 
 import {
@@ -28,4 +29,13 @@ export const fetchResorts = async (dispatch) => {
       },
     });
   }
+};
+
+export const updateKeyword = (dispatch, keyword) => {
+  dispatch({
+    type: CHANGE_SEARCH_KEYWORD,
+    payload: {
+      keyword,
+    },
+  });
 };

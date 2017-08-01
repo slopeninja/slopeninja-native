@@ -22,10 +22,8 @@ const styles = StyleSheet.create({
   progressBox: {
     display: 'block',
     height: '100%',
-    // transition: 'width 0.5s',
     backgroundColor: '#4A4A4A',
   },
-
 });
 
 const ProgressBar = ({ small = false, progress = 0 }) => {
