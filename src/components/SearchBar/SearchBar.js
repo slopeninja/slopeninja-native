@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   TextInput,
+  TouchableHighlight,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -41,15 +42,32 @@ const SearchBar = props => (
       placeholder="Search Resort"
       placeholderTextColor="#8EE8FF"
       selectionColor="#FFFFFF"
+      value={props.keyword}
       onChangeText={
         keyword => props.updateKeyword(keyword)
       }
     />
-    <View style={styles.cancelIconContainer}>
-      <CancelIcon />
-    </View>
+    <TouchableHighlight
+      hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+      underlayColor="transparent"
+      onPress={
+        () => props.updateKeyword('')
+      }
+    >
+      <View
+        style={styles.cancelIconContainer}
+      >
+        <CancelIcon />
+      </View>
+    </TouchableHighlight>
   </View>
 );
+
+const mapStateToProps = (state) => {
+  return {
+    keyword: state.app.resorts.keyword,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -59,6 +77,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const ConnectedSearchBar = connect(null, mapDispatchToProps)(SearchBar);
+const ConnectedSearchBar = connect(mapStateToProps, mapDispatchToProps)(SearchBar);
 
 export default ConnectedSearchBar;

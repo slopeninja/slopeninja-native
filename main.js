@@ -7,6 +7,7 @@ import {
   applyMiddleware,
 } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
 import App from './src/App';
 
@@ -28,6 +29,7 @@ const store = createStore(
   rootReducer,
   applyMiddleware(
     // middleware for intercepting and dispatching navigation actions
+    createLogger(),
     reduxThunk,
   ),
 );

@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
+import fuzzysearch from 'fuzzysearch';
 
 import SlideBar from '../SlideBar/SlideBar';
 import ResortInfoCard from '../ResortInfoCard/ResortInfoCard';
@@ -58,10 +59,10 @@ class Home extends Component {
     let resorts = this.props.resorts;
     if (this.props.keyword) {
       resorts = resorts.filter(
-        singleResort => singleResort.name.toUpperCase().includes(this.props.keyword.toUpperCase()),
+        singleResort => fuzzysearch(this.props.keyword, singleResort.name)
+        // singleResort.name.toUpperCase().includes(this.props.keyword.toUpperCase()),
       );
     }
-
 
     return (
       <View
@@ -92,7 +93,7 @@ Home.navigationOptions = {
 
 const mapStateToProps = (state) => {
   return {
-    keyword: null,
+    keyword: state.app.resorts.keyword,
     resorts: state.app.resorts.resorts,
     firstResort: state.app.resorts.resorts[0],
     resortsStatus: state.app.resorts.resortsStatus,
