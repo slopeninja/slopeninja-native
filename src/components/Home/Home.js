@@ -59,8 +59,12 @@ class Home extends Component {
     let resorts = this.props.resorts;
     if (this.props.keyword) {
       resorts = resorts.filter(
-        singleResort => fuzzysearch(this.props.keyword, singleResort.name)
-        // singleResort.name.toUpperCase().includes(this.props.keyword.toUpperCase()),
+        singleResort => {
+          const keyword = this.props.keyword.toUpperCase();
+          const name = singleResort.name.toUpperCase();
+          const location = singleResort.location.toUpperCase();
+          return fuzzysearch(keyword, name) || fuzzysearch(keyword, location)
+        }
       );
     }
 
