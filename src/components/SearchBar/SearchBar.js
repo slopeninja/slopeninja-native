@@ -50,6 +50,7 @@ const SearchBar = (props) => {
         <SearchIcon />
       </View>
       <TextInput
+        underlineColorAndroid="transparent"
         style={styles.textInput}
         placeholder="Search Resort"
         placeholderTextColor="#8EE8FF"

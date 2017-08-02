@@ -22,9 +22,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
   },
-  processBarDescriptiion: {
+  processBarDescription: {
     fontSize: 24,
-    fontWeight: '500',
     marginBottom: 18,
   },
   processBarStats: {
@@ -46,12 +45,12 @@ const ProgressBars = ({ liftCounts, trailCounts }) => {
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarInfo}>
-        <BoldText style={styles.processBarDescriptiion}>Open Lifts</BoldText>
+        <BoldText style={styles.processBarDescription}>Open Lifts</BoldText>
         <LightText style={styles.processBarStats}>{liftCounts.open}</LightText>
         <ProgressBar small={false} progress={liftsProgress} />
       </View>
       <View style={styles.progressBarInfo}>
-        <BoldText style={styles.processBarDescriptiion}>Open Trails</BoldText>
+        <BoldText style={styles.processBarDescription}>Open Trails</BoldText>
         <LightText style={styles.processBarStats}>{trailCounts.open}</LightText>
         <ProgressBar small={false} progress={trailsProgress} />
       </View>

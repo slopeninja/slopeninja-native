@@ -77,12 +77,12 @@ class Home extends Component {
     let resorts = this.props.resorts;
     if (this.props.keyword) {
       resorts = resorts.filter(
-        singleResort => {
+        (singleResort) => {
           const keyword = this.props.keyword.toUpperCase();
           const name = singleResort.name.toUpperCase();
           const location = singleResort.location.toUpperCase();
-          return fuzzysearch(keyword, name) || fuzzysearch(keyword, location)
-        }
+          return fuzzysearch(keyword, name) || fuzzysearch(keyword, location);
+        },
       );
     }
 
@@ -96,22 +96,23 @@ class Home extends Component {
         <SlideBar
           resorts={resorts}
           onResortClick={this.handleResortClick}
+          keyword={this.props.keyword}
         />
-          <Animatable.View
-            ref={ref => this.resortInfoCard = ref}
+        <Animatable.View
+          ref={ref => this.resortInfoCard = ref}
+          style={{
+            flex: 1,
+          }}
+        >
+          <ScrollView
             style={{
               flex: 1,
             }}
+            ref={ref => this.resortInfoCardScrollView = ref}
           >
-            <ScrollView
-              style={{
-                flex: 1,
-              }}
-              ref={ref => this.resortInfoCardScrollView = ref}
-            >
-              <ResortInfoCard resort={resort}/>
-            </ScrollView>
-          </Animatable.View>
+            <ResortInfoCard resort={resort} />
+          </ScrollView>
+        </Animatable.View>
       </View>
     );
   }

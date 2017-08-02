@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   progressBarInfo: {
     flex: 1,
   },
-  processBarDescriptiion: {
+  processBarDescription: {
     fontSize: 16,
     marginBottom: 10,
   },
@@ -114,11 +114,11 @@ const ResortNavCard = ({ style, resort, onResortClick }) => {
             </View>
             <View style={styles.progressBarContainer}>
               <View style={styles.progressBarInfo}>
-                <LightText style={styles.processBarDescriptiion}>Open Lifts</LightText>
+                <LightText style={styles.processBarDescription}>Open Lifts</LightText>
                 <ProgressBar small progress={liftsProgress} />
               </View>
               <View style={styles.progressBarInfo}>
-                <LightText style={styles.processBarDescriptiion}>Open Trails</LightText>
+                <LightText style={styles.processBarDescription}>Open Trails</LightText>
                 <ProgressBar small progress={trailsProgress} />
               </View>
             </View>

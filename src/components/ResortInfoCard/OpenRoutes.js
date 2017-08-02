@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   highwayIconContainer: {
-    marginRight: 6,
-    marginLeft: 6,
     position: 'relative',
-    height: 54,
+    width: 66,
+    height: 66,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   openRoutesTitle: {
     fontSize: 24,
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
   exceptionIndicator: {
     zIndex: 999,
     position: 'absolute',
-    left: 38,
-    top: -8,
+    left: 44,
+    top: 0,
     width: 20,
     height: 20,
   },

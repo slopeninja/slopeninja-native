@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     height: 22,
   },
   progressBox: {
-    display: 'block',
     height: '100%',
     backgroundColor: '#4A4A4A',
   },

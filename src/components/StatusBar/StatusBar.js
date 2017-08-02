@@ -6,7 +6,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +19,11 @@ const styles = StyleSheet.create({
 
 const SlopeNinjaStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
-    <StatusBar backgroundColor={backgroundColor} {...props} />
+    <StatusBar
+      backgroundColor={'red'}
+      translucent
+      {...props}
+    />
   </View>
 );
 
