@@ -1,31 +1,27 @@
 import React from 'react';
 import {
   StyleSheet,
-  ScrollView,
-  Dimensions,
+  View,
 } from 'react-native';
 
 import ResortInfoCardHeader from './ResortInfoCardHeader';
 import ResortInfoCardBody from './ResortInfoCardBody';
 
-
-const DEVICE_WIDTH = Dimensions.get('window').width;
-
 const styles = StyleSheet.create({
   resortInfoCard: {
-    width: DEVICE_WIDTH,
+    flex: 1,
   },
 });
 
 const ResortInfoCard = ({ resort }) => (
-  <ScrollView
+  <View
     style={styles.resortInfoCard}
   >
     <ResortInfoCardHeader resort={resort} />
     <ResortInfoCardBody
       resort={resort}
     />
-  </ScrollView>
+  </View>
 );
 
 export default ResortInfoCard;

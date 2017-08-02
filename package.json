@@ -17,6 +17,7 @@
     "fuzzysearch": "^1.0.3",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
+    "react-native-animatable": "^1.2.3",
     "react-native-loader": "^1.1.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",

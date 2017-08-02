@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 import BoldText from '../AdaptiveText/BoldText';
 import LightText from '../AdaptiveText/LightText';
@@ -23,14 +24,13 @@ const weatherIcons = {
   cloudy: CloudyIcon,
   rain: RainIcon,
   snow: SnowIcon,
-  thundrstorm: ThunderStormIcon,
+  thunderstorm: ThunderStormIcon,
 };
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   ResortInfoCardContentHeader: {
-    borderWidth: 1,
-    borderTopWidth: 0,
+    borderBottomWidth: 1,
     borderColor: '#EDEDED',
     height: 204,
     width: DEVICE_WIDTH,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 });
 
 const ResortInfoCardContentHeader = ({ resort }) => {
-  const ResortLogo = resortLogos[resort.shortName] || resortLogos.northstar;
+  const ResortLogo = resortLogos[resort.shortName];
   const WeatherIcon = weatherIcons[resort.weather.condition];
   return (
     <View style={styles.ResortInfoCardContentHeader}>
@@ -88,7 +88,18 @@ const ResortInfoCardContentHeader = ({ resort }) => {
           <LightText style={styles.statusText}>{resort.status === 'open' ? 'Open' : 'Closed'}</LightText>
         </View>
         <View style={styles.statusContainer}>
-          <WeatherIcon />
+          <Animatable.View
+            iterationCount="infinite"
+            animation={{
+              from: { translateY: -4 },
+              to: { translateY: 2 },
+            }}
+            direction="alternate"
+            easing="ease-in-out-quad"
+          >
+
+            <WeatherIcon />
+          </Animatable.View>
         </View>
       </View>
     </View>

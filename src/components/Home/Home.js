@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
 import fuzzysearch from 'fuzzysearch';
+import * as Animatable from 'react-native-animatable';
 
 import SlideBar from '../SlideBar/SlideBar';
 import ResortInfoCard from '../ResortInfoCard/ResortInfoCard';
@@ -29,11 +31,27 @@ class Home extends Component {
     this.state = {
       currentResort: null,
     };
+    this.resortInfoCard = null;
+    this.resortInfoCardScrollView = null;
+
     this.handleResortClick = this.handleResortClick.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchResorts();
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.currentResort !== this.state.currentResort) {
+      this.resortInfoCardScrollView.scrollTo({
+        x: 0,
+        y: 0,
+        animated: false,
+      });
+      setTimeout(() => {
+        this.resortInfoCard.fadeInUpBig(200);
+      }, 0);
+    }
   }
 
   handleResortClick(currentResort) {
@@ -79,9 +97,21 @@ class Home extends Component {
           resorts={resorts}
           onResortClick={this.handleResortClick}
         />
-        <ResortInfoCard
-          resort={resort}
-        />
+          <Animatable.View
+            ref={ref => this.resortInfoCard = ref}
+            style={{
+              flex: 1,
+            }}
+          >
+            <ScrollView
+              style={{
+                flex: 1,
+              }}
+              ref={ref => this.resortInfoCardScrollView = ref}
+            >
+              <ResortInfoCard resort={resort}/>
+            </ScrollView>
+          </Animatable.View>
       </View>
     );
   }

@@ -32,36 +32,45 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchBar = props => (
-  <View style={styles.searchBar}>
-    <View style={styles.searchIconContainer}>
-      <SearchIcon />
-    </View>
-    <TextInput
-      style={styles.textInput}
-      placeholder="Search Resort"
-      placeholderTextColor="#8EE8FF"
-      selectionColor="#FFFFFF"
-      value={props.keyword}
-      onChangeText={
-        keyword => props.updateKeyword(keyword)
-      }
-    />
-    <TouchableHighlight
-      hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
-      underlayColor="transparent"
-      onPress={
-        () => props.updateKeyword('')
-      }
-    >
+const SearchBar = (props) => {
+  let cancelButton = <View />;
+  if (props.keyword) {
+    cancelButton = (
       <View
         style={styles.cancelIconContainer}
       >
         <CancelIcon />
       </View>
-    </TouchableHighlight>
-  </View>
-);
+    );
+  }
+
+  return (
+    <View style={styles.searchBar}>
+      <View style={styles.searchIconContainer}>
+        <SearchIcon />
+      </View>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Search Resort"
+        placeholderTextColor="#8EE8FF"
+        selectionColor="#FFFFFF"
+        value={props.keyword}
+        onChangeText={
+          keyword => props.updateKeyword(keyword)
+        }
+      />
+      <TouchableHighlight
+        hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+        underlayColor="transparent"
+        onPress={
+          () => props.updateKeyword('')
+        }
+      >
+        {cancelButton}
+      </TouchableHighlight>
+    </View>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
