@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
 
 const ResortInfoCardContentHeader = ({ resort }) => {
   const ResortLogo = resortLogos[resort.shortName];
-  const WeatherIcon = weatherIcons[resort.weather.condition];
+  const condition = resort.weather.condition || 'clear';
+  const WeatherIcon = weatherIcons[condition];
+
   return (
     <View style={styles.ResortInfoCardContentHeader}>
       <View style={styles.resortDescription}>

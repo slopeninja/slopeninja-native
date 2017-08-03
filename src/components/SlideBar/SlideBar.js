@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class SlideBar extends Component {
+class SlideBar extends PureComponent {
   constructor(props) {
     super(props);
 
