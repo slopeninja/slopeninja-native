@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const SlopeNinjaStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
     <StatusBar
-      backgroundColor={'red'}
+      backgroundColor="#1CAACD"
       translucent
       {...props}
     />
