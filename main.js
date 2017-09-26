@@ -15,6 +15,9 @@ import App from './src/App';
 import nav from './src/reducers/nav';
 import resorts from './src/reducers/resorts';
 
+import {
+  ActionSheetProvider,
+} from '@expo/react-native-action-sheet';
 
 const app = combineReducers({
   resorts,
@@ -38,7 +41,9 @@ class SlopeNinja extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <ActionSheetProvider>
+          <App />
+        </ActionSheetProvider>
       </Provider>
     );
   }
