@@ -48,7 +48,7 @@ class SlideBar extends PureComponent {
   }
 
   render() {
-    let filteredResorts = this.props.resorts.sort((a, b) => {
+    let filteredResorts = [...this.props.resorts].sort((a, b) => {
       const nameA = a.name.toUpperCase(); // ignore upper and lowercase
       const nameB = b.name.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -68,8 +68,19 @@ class SlideBar extends PureComponent {
       const resorts = this.props.resorts.filter(
         resort => !this.props.favoriteResorts.includes(resort.shortName),
       );
+      const sortedResorts = [...resorts].sort((a, b) => {
+        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
 
-      filteredResorts = [...prioritizedResorts, ...resorts];
+      filteredResorts = [...prioritizedResorts, ...sortedResorts];
     }
 
     if (filteredResorts.length === 0) {
