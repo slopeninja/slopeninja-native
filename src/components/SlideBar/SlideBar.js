@@ -32,21 +32,23 @@ class SlideBar extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.ScrollView = null;
+    this.scrollView = null;
   }
 
   componentWillUpdate(nextProps) {
-    if (this.ScrollView) {
-      this.ScrollView.scrollTo({
-        x: 0,
-        y: 0,
-        animated: nextProps.resorts.length > 0,
-      });
-    }
+    setTimeout(() => {
+      if (this.scrollView) {
+        this.scrollView.scrollTo({
+          x: 0,
+          y: 0,
+          animated: nextProps.resorts.length > 0,
+        });
+      }
+    }, 0);
   }
 
   render() {
-    this.props.resorts.sort((a, b) => {
+    let filteredResorts = this.props.resorts.sort((a, b) => {
       const nameA = a.name.toUpperCase(); // ignore upper and lowercase
       const nameB = b.name.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -58,7 +60,35 @@ class SlideBar extends PureComponent {
       return 0;
     });
 
-    const sideNavContent = this.props.resorts.map(resort => (
+    if (this.props.favoriteResorts.length > 0) {
+      const prioritizedResorts = this.props.resorts.filter(
+        resort => this.props.favoriteResorts.includes(resort.shortName),
+      );
+
+      const resorts = this.props.resorts.filter(
+        resort => !this.props.favoriteResorts.includes(resort.shortName),
+      );
+
+      filteredResorts = [...prioritizedResorts, ...resorts];
+    }
+
+    if (filteredResorts.length === 0) {
+      return (
+        <View style={styles.scrollViewWrapper}>
+          <View style={styles.emptyList}>
+            <LightText
+              style={{
+                fontSize: 16,
+              }}
+            >
+              We tried, but we couldn&apos;t find &quot;{this.props.keyword}&quot; in Tahoe.
+            </LightText>
+          </View>
+        </View>
+      );
+    }
+
+    const sideNavContent = filteredResorts.map(resort => (
       <ResortNavCard
         key={resort.shortName}
         resort={resort}
@@ -67,31 +97,17 @@ class SlideBar extends PureComponent {
       />
     ));
 
-    let slideBar = (
+    const slideBar = (
       <ScrollView
         style={styles.scrollView}
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled={false}
-        ref={ref => this.ScrollView = ref}
+        ref={(ref) => { this.scrollView = ref; }}
       >
         {sideNavContent}
       </ScrollView>
     );
-
-    if (this.props.resorts.length < 1) {
-      slideBar = (
-        <View style={styles.emptyList}>
-          <LightText
-            style={{
-              fontSize: 16,
-            }}
-          >
-            We tried, but we couldn&apos;t find &quot;{this.props.keyword}&quot; in Tahoe.
-          </LightText>
-        </View>
-      );
-    }
 
     return (
       <View style={styles.scrollViewWrapper}>

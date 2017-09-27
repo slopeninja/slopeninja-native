@@ -20,7 +20,7 @@ const favorites = (state = initialState, action) => {
 
     const newState = {
       ...state,
-      favoriteResorts: [...state.favoriteResorts, action.payload.resortShortName],
+      favoriteResorts: [action.payload.resortShortName, ...state.favoriteResorts],
     };
     return newState;
   }

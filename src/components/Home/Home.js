@@ -97,6 +97,7 @@ class Home extends Component {
           resorts={resorts}
           onResortClick={this.handleResortClick}
           keyword={this.props.keyword}
+          favoriteResorts={this.props.favoriteResorts}
         />
         <Animatable.View
           ref={ref => this.resortInfoCard = ref}
@@ -132,6 +133,7 @@ const mapStateToProps = (state) => {
     resorts: state.app.resorts.resorts,
     firstResort: state.app.resorts.resorts[0],
     resortsStatus: state.app.resorts.resortsStatus,
+    favoriteResorts: state.app.favorites.favoriteResorts,
   };
 };
 
