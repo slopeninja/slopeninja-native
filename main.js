@@ -13,6 +13,7 @@ import App from './src/App';
 
 /* reducers */
 import nav from './src/reducers/nav';
+import favorites from './src/reducers/favorites';
 import resorts from './src/reducers/resorts';
 
 import {
@@ -21,6 +22,7 @@ import {
 
 const app = combineReducers({
   resorts,
+  favorites,
 });
 
 const rootReducer = combineReducers({

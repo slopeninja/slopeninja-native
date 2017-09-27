@@ -32,7 +32,6 @@ export const fetchResorts = async (dispatch) => {
 };
 
 export const updateKeyword = (dispatch, keyword) => {
-  console.log(keyword)
   dispatch({
     type: CHANGE_SEARCH_KEYWORD,
     payload: {

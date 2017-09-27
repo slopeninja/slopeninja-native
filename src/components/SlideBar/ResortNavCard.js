@@ -4,6 +4,9 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
+import { connect } from 'react-redux';
+
+import { mutateFavoriteResorts } from '../../actions/favorites';
 
 import ProgressBar from '../ProgressBar/ProgressBar';
 import LightText from '../AdaptiveText/LightText';
@@ -19,6 +22,9 @@ import NorthstarLogo from '../ResortLogos/NorthstarLogo';
 import SierraLogo from '../ResortLogos/SierraLogo';
 import SquawLogo from '../ResortLogos/SquawLogo';
 import SugarLogo from '../ResortLogos/SugarLogo';
+
+import BookmarkStrokeIcon from './BookmarkStrokeIcon';
+import BookmarkIcon from './BookmarkIcon';
 
 export const resortLogos = {
   boreal: BorealLogo,
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
     height: 136,
     width: 324,
     flexDirection: 'row',
+    position: 'relative',
   },
   resortLogoContainer: {
     marginTop: 18,
@@ -84,9 +91,51 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
   },
+  bookmarkWrapper: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    width: 24,
+    height: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 99,
+  },
 });
 
-const ResortNavCard = ({ style, resort, onResortClick }) => {
+const ResortBookmarkButton = ({ resort, favorite, onFavoritePress }) => {
+  return (
+    <View style={styles.bookmarkWrapper}>
+      <TouchableHighlight
+        onPress={() => {
+          onFavoritePress(resort.shortName, !favorite);
+        }}
+        hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+        underlayColor="transparent"
+      >
+        <View style={{ flex: 1 }}>
+          {
+            favorite ? (
+              <BookmarkIcon />
+            ) : (
+              <BookmarkStrokeIcon />
+            )
+          }
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
+};
+
+const ResortNavCard = (props) => {
+  const {
+    style,
+    resort,
+    onResortClick,
+    favoriteResorts,
+    favorite,
+  } = props;
+
   const liftsProgress = Math.ceil(
     (resort.liftCounts.open / resort.liftCounts.total) * 100,
   );
@@ -104,6 +153,11 @@ const ResortNavCard = ({ style, resort, onResortClick }) => {
         onPress={() => onResortClick(resort)}
       >
         <View style={styles.resortNavCard}>
+          <ResortBookmarkButton
+            resort={resort}
+            favorite={favorite}
+            onFavoritePress={props.mutateFavoriteResorts}
+          />
           <View style={styles.resortLogoContainer}>
             <ResortLogo />
           </View>
@@ -129,4 +183,18 @@ const ResortNavCard = ({ style, resort, onResortClick }) => {
   );
 };
 
-export default ResortNavCard;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    favorite: state.app.favorites.favoriteResorts.includes(ownProps.resort.shortName),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    mutateFavoriteResorts: (resortShortName, favorite) => {
+      dispatch(mutateFavoriteResorts(resortShortName, favorite));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResortNavCard);
