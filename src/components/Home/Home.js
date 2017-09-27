@@ -133,7 +133,7 @@ const mapStateToProps = (state) => {
     resorts: state.app.resorts.resorts,
     firstResort: state.app.resorts.resorts[0],
     resortsStatus: state.app.resorts.resortsStatus,
-    favoriteResorts: state.app.favorites.favoriteResorts,
+    favoriteResorts: state.favorites.favoriteResorts,
   };
 };
 

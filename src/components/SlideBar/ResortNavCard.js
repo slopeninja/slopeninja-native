@@ -185,7 +185,7 @@ const ResortNavCard = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    favorite: state.app.favorites.favoriteResorts.includes(ownProps.resort.shortName),
+    favorite: state.favorites.favoriteResorts.includes(ownProps.resort.shortName),
   };
 };
 
