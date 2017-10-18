@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
 
 const openInMap = (showActionSheetWithOptions, name) => {
   const link = {
-    'Google Maps': `https://www.google.com/maps/search/?api=1&query=${name}`,
-    'Apple Maps': `http://maps.apple.com/?q=${name}`,
+    'Google Maps': `https://www.google.com/maps/search/?api=1&query=${name}+Ski+Resort`,
+    'Apple Maps': `http://maps.apple.com/?q=${name}+Ski+Resort`,
   };
 
   if (Platform.OS !== 'ios') {
