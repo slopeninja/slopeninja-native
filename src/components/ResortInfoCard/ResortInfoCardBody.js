@@ -46,11 +46,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const openInMap = (showActionSheetWithOptions, coords) => {
-  const zoomLevel = 13;
+const openInMap = (showActionSheetWithOptions, name) => {
   const link = {
-    'Google Maps': `http://maps.google.com/maps?ll=${coords.lat},${coords.lng}&z=${zoomLevel}`,
-    'Apple Maps': `http://maps.apple.com/?sll=${coords.lat},${coords.lng}&z=${zoomLevel}`,
+    'Google Maps': `https://www.google.com/maps/search/?api=1&query=${name}`,
+    'Apple Maps': `http://maps.apple.com/?q=${name}`,
   };
 
   if (Platform.OS !== 'ios') {
@@ -85,9 +84,9 @@ const ResortInfoCardContentBody = ({ resort, showActionSheetWithOptions }) => {
         <View style={styles.mapContainer}>
           <TouchableHighlight
             style={{ flex: 1 }}
-            onPress={() => openInMap(showActionSheetWithOptions, resort.coords)}
+            onPress={() => openInMap(showActionSheetWithOptions, resort.name)}
           >
-            <View style={{ flex: 1, backgroundColor: 'pink' }}>
+            <View style={{ flex: 1 }}>
               <MapView
                 customMapStyle={mapTheme}
                 provider={PROVIDER_GOOGLE}
