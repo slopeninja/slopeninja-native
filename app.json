@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "Slope Ninja",
-    "description": "Snow reports and road conditions for ski resorts in Tahoe",
+    "description": "Snow reports for Tahoe Resorts",
     "slug": "slopeninaja-native",
     "privacy": "public",
-    "sdkVersion": "17.0.0",
+    "sdkVersion": "22.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#1ED2FF",
@@ -19,15 +19,30 @@
     },
     "ios": {
       "bundleIdentifier": "ninja.slope.app",
-      "supportsTablet": true
+      "icon": "./assets/icons/iOSAppIcon.png",
+      "supportsTablet": true,
+      "buildNumber": "1.0.0",
+      "config": {
+        "googleMapsApiKey": "AIzaSyCceGlAwHncILM7vq047eJJXQBgZN5JVe8"
+      },
+      "isRemoteJSEnabled": true,
+      "supportsTablet": false
     },
     "android": {
-      "package": "ninja.slope.app"
+      "package": "ninja.slope.app",
+      "versionCode": 1,
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCceGlAwHncILM7vq047eJJXQBgZN5JVe8"
+        }
+      }
     },
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#1ED2FF"
     },
-    "androidStatusBarColor": "#1ED2FF"
+    "androidStatusBarColor": "#1ED2FF",
+    "scheme": "ninja"
   }
 }

@@ -67,4 +67,4 @@ class SlopeNinja extends Component {
   }
 }
 
-Expo.registerRootComponent(SlopeNinja);
+export default SlopeNinja;
