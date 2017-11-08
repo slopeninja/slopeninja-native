@@ -4,9 +4,12 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+import fuzzysearch from 'fuzzysearch';
 
 import ResortNavCard from './ResortNavCard';
 import LightText from '../AdaptiveText/LightText';
+
+import normalizeResorts from '../Home/normalizeResorts';
 
 const TOP_NAV_HEIGHT = 136 + (18 * 2);
 
@@ -48,41 +51,21 @@ class SlideBar extends PureComponent {
   }
 
   render() {
-    const unsortedResorts = [...this.props.resorts];
-    let filteredResorts = unsortedResorts.sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
+    const normalizedResorts = normalizeResorts(
+      this.props.resorts,
+      this.props.favoriteResorts,
+    );
 
-    if (this.props.favoriteResorts.length > 0) {
-      const prioritizedResorts = this.props.favoriteResorts.map(
-        resortShortName => unsortedResorts.find(resort =>
-        resort.shortName.includes(resortShortName)),
+    let filteredResorts = normalizedResorts;
+    if (this.props.keyword) {
+      filteredResorts = normalizedResorts.filter(
+        (singleResort) => {
+          const keyword = this.props.keyword.toUpperCase();
+          const name = singleResort.name.toUpperCase();
+          const location = singleResort.location.toUpperCase();
+          return fuzzysearch(keyword, name) || fuzzysearch(keyword, location);
+        },
       );
-
-      const resorts = unsortedResorts.filter(
-        resort => !this.props.favoriteResorts.includes(resort.shortName),
-      );
-      const sortedResorts = [...resorts].sort((a, b) => {
-        const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-        const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      });
-
-      filteredResorts = [...prioritizedResorts, ...sortedResorts];
     }
 
     if (filteredResorts.length === 0) {
@@ -101,7 +84,7 @@ class SlideBar extends PureComponent {
       );
     }
 
-    const sideNavContent = filteredResorts.map(resort => (
+    const sideNavCards = filteredResorts.map(resort => (
       <ResortNavCard
         key={resort.shortName}
         resort={resort}
@@ -110,21 +93,17 @@ class SlideBar extends PureComponent {
       />
     ));
 
-    const slideBar = (
-      <ScrollView
-        style={styles.scrollView}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled={false}
-        ref={(ref) => { this.scrollView = ref; }}
-      >
-        {sideNavContent}
-      </ScrollView>
-    );
-
     return (
       <View style={styles.scrollViewWrapper}>
-        {slideBar}
+        <ScrollView
+          style={styles.scrollView}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled={false}
+          ref={(ref) => { this.scrollView = ref; }}
+        >
+          {sideNavCards}
+        </ScrollView>
       </View>
     );
   }

@@ -3,10 +3,11 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  Animated,
+  RefreshControl,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
-import fuzzysearch from 'fuzzysearch';
 import * as Animatable from 'react-native-animatable';
 
 import SlideBar from '../SlideBar/SlideBar';
@@ -15,6 +16,8 @@ import ResortInfoCard from '../ResortInfoCard/ResortInfoCard';
 import { fetchResorts } from '../../actions/resorts';
 
 import HomeHeader from './HomeHeader';
+
+import normalizeResorts from './normalizeResorts';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +51,9 @@ class Home extends Component {
         y: 0,
         animated: false,
       });
-      this.resortInfoCard.fadeInUpBig(200);
+      setTimeout(() => {
+        this.resortInfoCard.fadeInUpBig(200);
+      }, 0);
     }
   }
 
@@ -59,7 +64,7 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.resortsStatus !== 'success') {
+    if (!this.props.resorts.length) {
       return (
         <View style={styles.container}>
           <Bubbles size={20} color="#4A4A4A" />
@@ -72,18 +77,6 @@ class Home extends Component {
       resort = this.state.currentResort;
     }
 
-    let resorts = this.props.resorts;
-    if (this.props.keyword) {
-      resorts = resorts.filter(
-        (singleResort) => {
-          const keyword = this.props.keyword.toUpperCase();
-          const name = singleResort.name.toUpperCase();
-          const location = singleResort.location.toUpperCase();
-          return fuzzysearch(keyword, name) || fuzzysearch(keyword, location);
-        },
-      );
-    }
-
     return (
       <View
         style={{
@@ -92,7 +85,7 @@ class Home extends Component {
         }}
       >
         <SlideBar
-          resorts={resorts}
+          resorts={this.props.resorts}
           onResortClick={this.handleResortClick}
           keyword={this.props.keyword}
           favoriteResorts={this.props.favoriteResorts}
@@ -108,6 +101,16 @@ class Home extends Component {
               flex: 1,
             }}
             ref={ref => this.resortInfoCardScrollView = ref}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.props.resortsStatus === 'fetching'}
+                onRefresh={this.props.fetchResorts}
+              />
+            }
+            scrollEventThrottle={16}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+            )}
           >
             <ResortInfoCard resort={resort} />
           </ScrollView>
@@ -126,47 +129,15 @@ Home.navigationOptions = {
 };
 
 const mapStateToProps = (state) => {
-  const unsortedResorts = [...state.app.resorts.resorts];
-  let resortList;
-  resortList = unsortedResorts.sort((a, b) => {
-    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  if (state.favorites.favoriteResorts.length > 0) {
-    const prioritizedResorts = state.favorites.favoriteResorts.map(
-      resortShortName => unsortedResorts.find(resort =>
-      resort.shortName.includes(resortShortName)),
-    );
-    const resorts = unsortedResorts.filter(
-      resort => !state.favorites.favoriteResorts.includes(resort.shortName),
-    );
-    const sortedResorts = [...resorts].sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-
-    resortList = [...prioritizedResorts, ...sortedResorts];
-  }
+  const normalizedResorts = normalizeResorts(
+    state.app.resorts.resorts,
+    state.favorites.favoriteResorts,
+  );
 
   return {
     keyword: state.app.resorts.keyword,
     resorts: state.app.resorts.resorts,
-    firstResort: resortList[0],
+    firstResort: normalizedResorts[0],
     resortsStatus: state.app.resorts.resortsStatus,
     favoriteResorts: state.favorites.favoriteResorts,
   };
