@@ -10,7 +10,8 @@ import {
 import {
   connectActionSheet,
 } from '@expo/react-native-action-sheet';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+
+import { MapView } from 'expo';
 
 import SnowInfo from './SnowInfo';
 import OpenRoutes from './OpenRoutes';
@@ -89,7 +90,7 @@ const ResortInfoCardContentBody = ({ resort, showActionSheetWithOptions }) => {
             <View style={{ flex: 1 }}>
               <MapView
                 customMapStyle={mapTheme}
-                provider={PROVIDER_GOOGLE}
+                provider={MapView.PROVIDER_GOOGLE}
                 style={{ flex: 1 }}
                 scrollEnabled={false}
                 pitchEnabled={false}
