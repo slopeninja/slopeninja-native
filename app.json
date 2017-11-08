@@ -23,7 +23,7 @@
       "supportsTablet": true,
       "buildNumber": "1.0.0",
       "config": {
-        "googleMapsApiKey": "AIzaSyCceGlAwHncILM7vq047eJJXQBgZN5JVe8"
+        "googleMapsApiKey": "AIzaSyDI1850XSlrvboAaIj7_UNXBBsu8NjJ3Jg"
       },
       "isRemoteJSEnabled": true,
       "supportsTablet": false
@@ -34,7 +34,7 @@
       "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCceGlAwHncILM7vq047eJJXQBgZN5JVe8"
+          "apiKey": "AIzaSyDI1850XSlrvboAaIj7_UNXBBsu8NjJ3Jg"
         }
       }
     },
