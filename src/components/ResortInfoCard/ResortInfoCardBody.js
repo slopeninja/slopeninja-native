@@ -74,7 +74,7 @@ const openInMap = (showActionSheetWithOptions, name) => {
 };
 
 const ResortInfoCardContentBody = ({ resort, showActionSheetWithOptions }) => {
-  const temperature = resort.weather.temperature !== null ? `${resort.weather.temperature}"` : '-';
+  const temperature = resort.weather.temperature !== null ? `${resort.weather.temperature}°` : '-';
   // const base = resort.weather.base !== null ? `${resort.weather.base}"` : '-';
   const snowDepth = resort.weather.snowDepth !== null ? `${resort.weather.snowDepth}"` : '-';
   const newSnow = resort.weather.newSnow !== null ? `${resort.weather.newSnow}"` : '-';
