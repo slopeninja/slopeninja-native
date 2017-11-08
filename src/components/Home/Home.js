@@ -48,9 +48,7 @@ class Home extends Component {
         y: 0,
         animated: false,
       });
-      setTimeout(() => {
-        this.resortInfoCard.fadeInUpBig(200);
-      }, 0);
+      this.resortInfoCard.fadeInUpBig(200);
     }
   }
 
@@ -128,10 +126,47 @@ Home.navigationOptions = {
 };
 
 const mapStateToProps = (state) => {
+  const unsortedResorts = [...state.app.resorts.resorts];
+  let resortList;
+  resortList = unsortedResorts.sort((a, b) => {
+    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  if (state.favorites.favoriteResorts.length > 0) {
+    const prioritizedResorts = state.favorites.favoriteResorts.map(
+      resortShortName => unsortedResorts.find(resort =>
+      resort.shortName.includes(resortShortName)),
+    );
+    const resorts = unsortedResorts.filter(
+      resort => !state.favorites.favoriteResorts.includes(resort.shortName),
+    );
+    const sortedResorts = [...resorts].sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+
+    resortList = [...prioritizedResorts, ...sortedResorts];
+  }
+
   return {
     keyword: state.app.resorts.keyword,
     resorts: state.app.resorts.resorts,
-    firstResort: state.app.resorts.resorts[0],
+    firstResort: resortList[0],
     resortsStatus: state.app.resorts.resortsStatus,
     favoriteResorts: state.favorites.favoriteResorts,
   };

@@ -103,36 +103,41 @@ const styles = StyleSheet.create({
   },
 });
 
-const ResortBookmarkButton = ({ resort, favorite, onFavoritePress }) => {
-  return (
-    <View style={styles.bookmarkWrapper}>
-      <TouchableHighlight
-        onPress={() => {
-          onFavoritePress(resort.shortName, !favorite);
-        }}
-        hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
-        underlayColor="transparent"
-      >
-        <View style={{ flex: 1 }}>
-          {
-            favorite ? (
-              <BookmarkIcon />
-            ) : (
-              <BookmarkStrokeIcon />
-            )
-          }
-        </View>
-      </TouchableHighlight>
-    </View>
-  );
-};
+const ResortBookmarkButton = ({
+  resort,
+  favorite,
+  onFavoritePress,
+  onResortClick,
+}) => (
+  <View style={styles.bookmarkWrapper}>
+    <TouchableHighlight
+      onPress={() => {
+        if (!favorite) {
+          onResortClick(resort);
+        }
+        onFavoritePress(resort.shortName, !favorite);
+      }}
+      hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+      underlayColor="transparent"
+    >
+      <View style={{ flex: 1 }}>
+        {
+          favorite ? (
+            <BookmarkIcon />
+          ) : (
+            <BookmarkStrokeIcon />
+          )
+        }
+      </View>
+    </TouchableHighlight>
+  </View>
+);
 
 const ResortNavCard = (props) => {
   const {
     style,
     resort,
     onResortClick,
-    favoriteResorts,
     favorite,
   } = props;
 
@@ -157,6 +162,7 @@ const ResortNavCard = (props) => {
             resort={resort}
             favorite={favorite}
             onFavoritePress={props.mutateFavoriteResorts}
+            onResortClick={onResortClick}
           />
           <View style={styles.resortLogoContainer}>
             <ResortLogo />
