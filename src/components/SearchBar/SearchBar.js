@@ -56,6 +56,7 @@ const SearchBar = (props) => {
         placeholderTextColor="#8EE8FF"
         selectionColor="#FFFFFF"
         value={props.keyword}
+        autoCorrect={false}
         onChangeText={
           keyword => props.updateKeyword(keyword)
         }
