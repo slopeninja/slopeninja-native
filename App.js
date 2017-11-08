@@ -16,7 +16,7 @@ import {
   ActionSheetProvider,
 } from '@expo/react-native-action-sheet';
 
-import App from './src/App';
+import SlopeNinja from './src/SlopeNinja';
 
 /* reducers */
 import nav from './src/reducers/nav';
@@ -33,15 +33,16 @@ const rootReducer = combineReducers({
   favorites,
 });
 
+const middlewares = [reduxThunk];
+if (__DEV__) { // eslint-disable-line no-undef
+  middlewares.push(createLogger());
+}
+
 const store = createStore(
   rootReducer,
   undefined,
   compose(
-    applyMiddleware(
-      // middleware for intercepting and dispatching navigation actions
-      createLogger(),
-      reduxThunk,
-    ),
+    applyMiddleware(...middlewares),
     autoRehydrate(),
   ),
 );
@@ -55,16 +56,16 @@ persistStore(
   },
 );
 
-class SlopeNinja extends Component {
+class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <ActionSheetProvider>
-          <App />
+          <SlopeNinja />
         </ActionSheetProvider>
       </Provider>
     );
   }
 }
 
-export default SlopeNinja;
+export default App;

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class App extends Component {
+class SlopeNinja extends Component {
 
   constructor(props) {
     super(props);
@@ -63,7 +63,6 @@ const mapStateToProps = (state) => {
   };
 };
 
+const ConnectedSlopeNinja = connect(mapStateToProps, null)(SlopeNinja);
 
-const ConnectedApp = connect(mapStateToProps, null)(App);
-
-export default ConnectedApp;
+export default ConnectedSlopeNinja;
