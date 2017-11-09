@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Slope Ninja",
-    "description": "Snow reports for Tahoe Resorts",
+    "description": "Snow updates for Tahoe Resorts",
     "slug": "slopeninaja-native",
     "privacy": "public",
     "sdkVersion": "22.0.0",
