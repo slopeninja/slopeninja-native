@@ -5,6 +5,7 @@ import {
   ScrollView,
   Animated,
   RefreshControl,
+  AppState,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
@@ -31,17 +32,23 @@ const styles = StyleSheet.create({
 class Home extends Component {
   constructor(props) {
     super(props);
+
+    console.log('contructor', AppState.currentState);
+
     this.state = {
       currentResort: null,
+      appState: AppState.currentState,
     };
     this.resortInfoCard = null;
     this.resortInfoCardScrollView = null;
 
     this.handleResortClick = this.handleResortClick.bind(this);
+    this.handleAppStateChange = this.handleAppStateChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchResorts();
+    AppState.addEventListener('change', this.handleAppStateChange);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -57,9 +64,24 @@ class Home extends Component {
     }
   }
 
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
   handleResortClick(currentResort) {
     this.setState({
       currentResort,
+    });
+  }
+
+  handleAppStateChange(nextAppState) {
+    const prevAppState = this.state.appState;
+    this.setState(() => ({
+      appState: nextAppState,
+    }), () => {
+      if (prevAppState === 'background' && this.state.appState === 'active') {
+        this.props.fetchResorts();
+      }
     });
   }
 
