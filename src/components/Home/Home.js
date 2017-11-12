@@ -113,7 +113,7 @@ class Home extends Component {
           favoriteResorts={this.props.favoriteResorts}
         />
         <Animatable.View
-          ref={ref => this.resortInfoCard = ref}
+          ref={(ref) => { this.resortInfoCard = ref; }}
           style={{
             flex: 1,
           }}
@@ -122,7 +122,7 @@ class Home extends Component {
             style={{
               flex: 1,
             }}
-            ref={ref => this.resortInfoCardScrollView = ref}
+            ref={(ref) => { this.resortInfoCardScrollView = ref; }}
             refreshControl={
               <RefreshControl
                 refreshing={this.props.resortsStatus === 'fetching'}
