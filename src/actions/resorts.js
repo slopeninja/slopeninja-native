@@ -1,13 +1,11 @@
 import {
-  FETCH_RESORTS,
-  FETCH_RESORTS_SUCCESS,
-  FETCH_RESORTS_FAIL,
-  CHANGE_SEARCH_KEYWORD,
-} from '../reducers/resorts';
-
-import {
   getResorts,
 } from '../api';
+
+export const FETCH_RESORTS = 'FETCH_RESORTS';
+export const FETCH_RESORTS_SUCCESS = 'FETCH_RESORTS_SUCCESS';
+export const FETCH_RESORTS_FAIL = 'FETCH_RESORTS_FAIL';
+export const CHANGE_SEARCH_KEYWORD = 'CHANGE_SEARCH_KEYWORD';
 
 export const fetchResorts = async (dispatch) => {
   dispatch({

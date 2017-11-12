@@ -1,13 +1,15 @@
+import {
+  FETCH_RESORTS,
+  FETCH_RESORTS_SUCCESS,
+  FETCH_RESORTS_FAIL,
+  CHANGE_SEARCH_KEYWORD,
+} from '../actions/resorts';
+
 const initialState = {
   resorts: [],
   resortsStatus: null,
   keyword: null,
 };
-
-export const FETCH_RESORTS = 'FETCH_RESORTS';
-export const FETCH_RESORTS_SUCCESS = 'FETCH_RESORTS_SUCCESS';
-export const FETCH_RESORTS_FAIL = 'FETCH_RESORTS_FAIL';
-export const CHANGE_SEARCH_KEYWORD = 'CHANGE_SEARCH_KEYWORD';
 
 function resorts(state = initialState, action) {
   if (action.type === FETCH_RESORTS_SUCCESS) {

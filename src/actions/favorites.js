@@ -1,6 +1,4 @@
-import {
-  MUTATE_FAVORITE_RESORTS,
-} from '../reducers/favorites';
+export const MUTATE_FAVORITE_RESORTS = 'MUTATE_FAVORITE_RESORTS';
 
 /* action creator */
 const mutateFavoriteResortsSuccess = (resortShortName, favorite) => ({

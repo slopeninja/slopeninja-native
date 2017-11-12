@@ -1,8 +1,10 @@
+import {
+  MUTATE_FAVORITE_RESORTS,
+} from '../actions/favorites';
+
 const initialState = {
   favoriteResorts: [],
 };
-
-export const MUTATE_FAVORITE_RESORTS = 'MUTATE_FAVORITE_RESORTS';
 
 const favorites = (state = initialState, action) => {
   if (action.type === MUTATE_FAVORITE_RESORTS) {
