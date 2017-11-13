@@ -16,9 +16,15 @@ import ResortInfoCard from '../ResortInfoCard/ResortInfoCard';
 
 import { fetchResorts } from '../../actions/resorts';
 
+import {
+  NOTIFICATION_BANNER_USER_PREFERENCE,
+} from '../../actions/userSession';
+
 import HomeHeader from './HomeHeader';
 
 import normalizeResorts from './normalizeResorts';
+
+import NotificationBanner from './NotificationBanner';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,8 +38,6 @@ const styles = StyleSheet.create({
 class Home extends Component {
   constructor(props) {
     super(props);
-
-    console.log('contructor', AppState.currentState);
 
     this.state = {
       currentResort: null,
@@ -99,6 +103,7 @@ class Home extends Component {
       resort = this.state.currentResort;
     }
 
+    /* eslint-disable max-len */
     return (
       <View
         style={{
@@ -106,6 +111,11 @@ class Home extends Component {
           flex: 1,
         }}
       >
+        {
+          this.props.notificationBannerUserPreference === NOTIFICATION_BANNER_USER_PREFERENCE.PENDING ? (
+            <NotificationBanner />
+          ) : null
+        }
         <SlideBar
           resorts={this.props.resorts}
           onResortClick={this.handleResortClick}
@@ -139,6 +149,7 @@ class Home extends Component {
         </Animatable.View>
       </View>
     );
+    /* eslint-enable */
   }
 }
 
@@ -162,16 +173,15 @@ const mapStateToProps = (state) => {
     firstResort: normalizedResorts[0],
     resortsStatus: state.app.resorts.resortsStatus,
     favoriteResorts: state.favorites.favoriteResorts,
+    notificationBannerUserPreference: state.userSession.notificationBannerUserPreference,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchResorts: () => {
-      dispatch(fetchResorts);
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchResorts: () => {
+    dispatch(fetchResorts);
+  },
+});
 
 const ConnectedHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 

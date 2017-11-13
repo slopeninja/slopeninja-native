@@ -1,6 +1,5 @@
-import Expo from 'expo';
+import React from 'react';
 import { AsyncStorage } from 'react-native';
-import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import {
   createStore,
@@ -22,6 +21,7 @@ import SlopeNinja from './src/SlopeNinja';
 import nav from './src/reducers/nav';
 import favorites from './src/reducers/favorites';
 import resorts from './src/reducers/resorts';
+import userSession from './src/reducers/userSession';
 
 const app = combineReducers({
   resorts,
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   app,
   nav,
   favorites,
+  userSession,
 });
 
 const middlewares = [reduxThunk];
@@ -52,20 +53,16 @@ persistStore(
   store,
   {
     storage: AsyncStorage,
-    whitelist: ['favorites'],
+    whitelist: ['favorites', 'userSession'],
   },
 );
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ActionSheetProvider>
-          <SlopeNinja />
-        </ActionSheetProvider>
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <ActionSheetProvider>
+      <SlopeNinja />
+    </ActionSheetProvider>
+  </Provider>
+);
 
 export default App;
