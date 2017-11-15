@@ -20,7 +20,7 @@ You can download Slope Ninja for Android from [the Play Store](https://play.goog
 
 ### Visit Slope Ninja on the Web
 
-Slope Ninja is available on the Web at [http://slope.nina](http://slope.nina).
+Slope Ninja is available on the Web at [http://slope.ninja](http://slope.ninja).
 
 <a name="contributing"/>
 
