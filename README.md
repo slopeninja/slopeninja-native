@@ -4,7 +4,7 @@
 
 ![Slope Ninja](https://github.com/juliaqiuxy/slopeninja-native/blob/master/.github/screenshot.png)
 
-This repository hosts the native app source code for Slope Ninja. The project is still a work-in-progress. If you have any questions, feel free to reach out to me on Twitter [@juliaqiuxy](https://twitter.com/juliaqiuxy).
+This repository hosts the native app source code for Slope Ninja. If you have any questions, feel free to reach out to me on Twitter [@juliaqiuxy](https://twitter.com/juliaqiuxy).
 
 ### Download Slope Ninja on iOS
 
