@@ -89,16 +89,25 @@ const OpenRoutes = ({ roads, openBrowser }) => {
     };
 
     return (
-      <View
-        style={[styles.highwayIconContainer, iconStyle]}
+      <TouchableHighlight
+        hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
+        underlayColor="transparent"
         key={road.number}
+        style={iconStyle}
+        onPress={() => {
+          openBrowser(`${road.prefix} ${road.number}`, road.sourceUrl);
+        }}
       >
-        <HighwayIcon
-          highwayNumber={road.number}
-        />
-        {incidentIcon}
-        {ambiguousIcon}
-      </View>
+        <View
+          style={styles.highwayIconContainer}
+        >
+          <HighwayIcon
+            highwayNumber={road.number}
+          />
+          {incidentIcon}
+          {ambiguousIcon}
+        </View>
+      </TouchableHighlight>
     );
   });
 
