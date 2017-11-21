@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
 
 
@@ -25,20 +26,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProgressBar = ({ small = false, progress = 0 }) => {
+const ProgressBar = ({ small = false, progress }) => {
   const progressBarSizeStyle = small ? styles.progressBarBoxSmall : styles.progressBarBoxRegular;
 
   const widthStyle = {
     width: `${progress}%`,
   };
 
-  return (
-    <View style={[styles.progressBarBox, progressBarSizeStyle]}>
-      <View
-        style={[styles.progressBox, widthStyle]}
-      />
-    </View>
-  );
+  let progressBar = null;
+  if (small && progress === undefined) {
+    return <Text>-</Text>
+  }
+
+  if (progress !== undefined) {
+    progressBar = (
+      <View style={[styles.progressBarBox, progressBarSizeStyle]}>
+        <View
+          style={[styles.progressBox, widthStyle]}
+        />
+      </View>
+    );
+  }
+
+  return progressBar;
 };
 
 export default ProgressBar;

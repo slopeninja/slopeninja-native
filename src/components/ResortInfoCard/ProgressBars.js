@@ -34,24 +34,35 @@ const styles = StyleSheet.create({
 });
 
 const ProgressBars = ({ liftCounts, trailCounts }) => {
-  const liftsProgress = Math.ceil(
-    (liftCounts.open / liftCounts.total) * 100,
-  );
+  let liftsProgress;
+  let trailsProgress;
 
-  const trailsProgress = Math.ceil(
-    (trailCounts.open / trailCounts.total) * 100,
-  );
+  let liftData = '-';
+  if (liftCounts.open !== null && liftCounts.total !== null) {
+    liftData = `${liftCounts.open} / ${liftCounts.total}`;
+    liftsProgress = Math.ceil(
+      (liftCounts.open / liftCounts.total) * 100,
+    );
+  }
+
+  let trailData = '-';
+  if (trailCounts.open !== null && trailCounts.total !== null) {
+    trailData = `${trailCounts.open} / ${trailCounts.total}`;
+    trailsProgress = Math.ceil(
+      (trailCounts.open / trailCounts.total) * 100,
+    );
+  }
 
   return (
     <View style={styles.progressBarContainer}>
       <View style={styles.progressBarInfo}>
         <BoldText style={styles.processBarDescription}>Open Lifts</BoldText>
-        <LightText style={styles.processBarStats}>{liftCounts.open}</LightText>
+        <LightText style={styles.processBarStats}>{liftData}</LightText>
         <ProgressBar small={false} progress={liftsProgress} />
       </View>
       <View style={styles.progressBarInfo}>
         <BoldText style={styles.processBarDescription}>Open Trails</BoldText>
-        <LightText style={styles.processBarStats}>{trailCounts.open}</LightText>
+        <LightText style={styles.processBarStats}>{trailData}</LightText>
         <ProgressBar small={false} progress={trailsProgress} />
       </View>
     </View>

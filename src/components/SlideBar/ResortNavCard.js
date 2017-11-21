@@ -141,13 +141,24 @@ const ResortNavCard = (props) => {
     favorite,
   } = props;
 
-  const liftsProgress = Math.ceil(
-    (resort.liftCounts.open / resort.liftCounts.total) * 100,
-  );
+  let liftsProgress;
+  let trailsProgress;
 
-  const trailsProgress = Math.ceil(
-    (resort.trailCounts.open / resort.trailCounts.total) * 100,
-  );
+  let liftData = '-';
+  if (resort.liftCounts.open !== null && resort.liftCounts.total !== null) {
+    liftData = `${resort.liftCounts.open} / ${resort.liftCounts.total}`;
+    liftsProgress = Math.ceil(
+      (resort.liftCounts.open / resort.liftCounts.total) * 100,
+    );
+  }
+
+  let trailData = '-';
+  if (resort.trailCounts.open !== null && resort.trailCounts.total !== null) {
+    trailData = `${resort.trailCounts.open} / ${resort.trailCounts.total}`;
+    trailsProgress = Math.ceil(
+      (resort.trailCounts.open / resort.trailCounts.total) * 100,
+    );
+  }
 
   const ResortLogo = resortLogos[resort.shortName];
 
