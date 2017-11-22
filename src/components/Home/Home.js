@@ -6,6 +6,7 @@ import {
   Animated,
   RefreshControl,
   AppState,
+  InteractionManager,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Bubbles } from 'react-native-loader';
@@ -84,7 +85,9 @@ class Home extends Component {
       appState: nextAppState,
     }), () => {
       if (prevAppState === 'background' && this.state.appState === 'active') {
-        this.props.fetchResorts();
+        InteractionManager.runAfterInteractions(() => {
+          this.props.fetchResorts();
+        });
       }
     });
   }
