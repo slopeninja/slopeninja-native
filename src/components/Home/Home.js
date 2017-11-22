@@ -36,6 +36,20 @@ const styles = StyleSheet.create({
   },
 });
 
+// promisify setTimeout
+const timeout = (ms) => new Promise(resolve => {
+  setTimeout(() => {
+    resolve();
+  }, ms);
+});
+
+// promisify InteractionManager.runAfterInteractions
+const runAfterInteractions = () => new Promise(resolve => {
+  InteractionManager.runAfterInteractions(() => {
+    resolve();
+  });
+});
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -83,11 +97,14 @@ class Home extends Component {
     const prevAppState = this.state.appState;
     this.setState(() => ({
       appState: nextAppState,
-    }), () => {
+    }), async () => {
       if (prevAppState === 'background' && this.state.appState === 'active') {
-        InteractionManager.runAfterInteractions(() => {
-          this.props.fetchResorts();
-        });
+        // wait for user to focus
+        await timeout(1000);
+        // wait until other animations finish
+        await runAfterInteractions();
+        // refresh resorts data
+        this.props.fetchResorts();
       }
     });
   }
