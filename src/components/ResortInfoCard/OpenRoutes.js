@@ -52,7 +52,6 @@ const OpenRoutes = ({ roads, openBrowser }) => {
     if (road.status === 'incident') {
       incidentIcon = (
         <TouchableHighlight
-          hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
           style={styles.exceptionIndicator}
           underlayColor="transparent"
           onPress={() => {
@@ -70,7 +69,6 @@ const OpenRoutes = ({ roads, openBrowser }) => {
     if (road.status === 'ambiguous') {
       ambiguousIcon = (
         <TouchableHighlight
-          hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
           style={styles.exceptionIndicator}
           underlayColor="transparent"
           onPress={() => {
@@ -90,7 +88,6 @@ const OpenRoutes = ({ roads, openBrowser }) => {
 
     return (
       <TouchableHighlight
-        hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
         underlayColor="transparent"
         key={road.number}
         style={iconStyle}
