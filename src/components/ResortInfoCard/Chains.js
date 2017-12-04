@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   View,
+  TouchableHighlight,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import HighwayIcon from '../HighwayIcons/HighwayIcon';
 import LightText from '../AdaptiveText/LightText';
@@ -47,36 +50,50 @@ const styles = StyleSheet.create({
   },
 });
 
-const Chains = ({ roads }) => {
+const Chains = ({ roads, openBrowser }) => {
   const R1Highways = roads.filter(key => key.chainStatus === 'R1');
   const R2Highways = roads.filter(key => key.chainStatus === 'R2');
 
   const r1HighwayIcons = R1Highways.map(
     key => (
-      <View
-        style={styles.highwayIconContainer}
+      <TouchableHighlight
+        underlayColor="transparent"
         key={key.number}
+        onPress={() => {
+          openBrowser(`${key.prefix} ${key.number}`, key.sourceUrl);
+        }}
       >
-        <HighwayIcon
-          highwayNumber={key.number}
-          width={36}
-          height={36}
-        />
-      </View>
+        <View
+          style={styles.highwayIconContainer}
+        >
+          <HighwayIcon
+            highwayNumber={key.number}
+            width={36}
+            height={36}
+          />
+        </View>
+      </TouchableHighlight>
     ),
   );
   const r2HighwayIcons = R2Highways.map(
     key => (
-      <View
-        style={styles.highwayIconContainer}
+      <TouchableHighlight
+        underlayColor="transparent"
         key={key.number}
+        onPress={() => {
+          openBrowser(`${key.prefix} ${key.number}`, key.sourceUrl);
+        }}
       >
-        <HighwayIcon
-          highwayNumber={key.number}
-          width={36}
-          height={36}
-        />
-      </View>
+        <View
+          style={styles.highwayIconContainer}
+        >
+          <HighwayIcon
+            highwayNumber={key.number}
+            width={36}
+            height={36}
+          />
+        </View>
+      </TouchableHighlight>
     ),
   );
 
@@ -127,4 +144,17 @@ const Chains = ({ roads }) => {
   );
 };
 
-export default Chains;
+const mapDispatchToProps = dispatch => ({
+  openBrowser: (title, url) =>
+    dispatch(
+      NavigationActions.navigate({
+        routeName: 'Browser',
+        params: {
+          title,
+          url,
+        },
+      }),
+    ),
+});
+
+export default connect(null, mapDispatchToProps)(Chains);
