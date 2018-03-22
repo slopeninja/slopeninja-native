@@ -14,6 +14,7 @@ import CloudyIcon from './WeatherIcons/CloudyIcon';
 import RainIcon from './WeatherIcons/RainIcon';
 import SnowIcon from './WeatherIcons/SnowIcon';
 import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
+import SleetIcon from './WeatherIcons/SleetIcon';
 
 import { resortLogos } from '../SlideBar/ResortNavCard';
 
@@ -25,7 +26,9 @@ const weatherIcons = {
   rain: RainIcon,
   snow: SnowIcon,
   thunderstorm: ThunderStormIcon,
+  sleet: SleetIcon,
 };
+
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
