@@ -30,7 +30,7 @@ const ProgressBar = ({ small = false, progress }) => {
   const progressBarSizeStyle = small ? styles.progressBarBoxSmall : styles.progressBarBoxRegular;
 
   const widthStyle = {
-    width: `${progress}%`,
+    width: `${Math.min(progress, 100)}%`,
   };
 
   let progressBar = null;
