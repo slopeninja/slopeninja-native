@@ -14,13 +14,13 @@ const HighwayIcon = ({ highwayNumber = '00', width = 54, height = 54 }) => {
   let fontSize = 28;
   let fontWeight = '400';
   let translateX = Platform.OS === 'ios' ? 10 : 11;
-  let translateY = Platform.OS === 'ios' ? 6 : 10;
+  let translateY = 36;
 
   if (highwayNumber.length > 2) {
     fontSize = 20;
     fontWeight = '600';
     translateX = Platform.OS === 'ios' ? 8 : 10;
-    translateY = Platform.OS === 'ios' ? 12 : 14;
+    translateY = 33;
   }
 
   return (

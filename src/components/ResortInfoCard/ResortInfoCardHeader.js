@@ -9,24 +9,36 @@ import * as Animatable from 'react-native-animatable';
 import BoldText from '../AdaptiveText/BoldText';
 import LightText from '../AdaptiveText/LightText';
 
-import SunnyIcon from './WeatherIcons/SunnyIcon';
-import CloudyIcon from './WeatherIcons/CloudyIcon';
+import ClearDayIcon from './WeatherIcons/ClearDayIcon';
+import ClearNightIcon from './WeatherIcons/ClearNightIcon';
 import RainIcon from './WeatherIcons/RainIcon';
 import SnowIcon from './WeatherIcons/SnowIcon';
-import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
 import SleetIcon from './WeatherIcons/SleetIcon';
+import WindIcon from './WeatherIcons/WindIcon';
+import FogIcon from './WeatherIcons/FogIcon';
+import CloudyIcon from './WeatherIcons/CloudyIcon';
+import PartlyCloudyDayIcon from './WeatherIcons/PartlyCloudyDayIcon';
+import PartlyCloudyNightIcon from './WeatherIcons/PartlyCloudyNightIcon';
+import HailIcon from './WeatherIcons/HailIcon';
+import ThunderStormIcon from './WeatherIcons/ThunderStormIcon';
+import TornadoIcon from './WeatherIcons/TornadoIcon';
 
 import { resortLogos } from '../SlideBar/ResortNavCard';
 
-
 const weatherIcons = {
-  sunny: SunnyIcon,
-  clear: SunnyIcon,
-  cloudy: CloudyIcon,
+  'clear-day': ClearDayIcon,
+  'clear-night': ClearNightIcon,
   rain: RainIcon,
   snow: SnowIcon,
-  thunderstorm: ThunderStormIcon,
   sleet: SleetIcon,
+  wind: WindIcon,
+  fog: FogIcon,
+  cloudy: CloudyIcon,
+  'partly-cloudy-day': PartlyCloudyDayIcon,
+  'partly-cloudy-night': PartlyCloudyNightIcon,
+  hail: HailIcon,
+  thunderstorm: ThunderStormIcon,
+  tornado: TornadoIcon,
 };
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -76,8 +88,8 @@ const styles = StyleSheet.create({
 
 const ResortInfoCardContentHeader = ({ resort }) => {
   const ResortLogo = resortLogos[resort.shortName];
-  const condition = resort.weather.condition || 'clear';
-  const WeatherIcon = weatherIcons[condition];
+  const condition = resort.weather.condition;
+  const WeatherIcon = weatherIcons[condition] || weatherIcons.cloudy;
 
   return (
     <View style={styles.ResortInfoCardContentHeader}>

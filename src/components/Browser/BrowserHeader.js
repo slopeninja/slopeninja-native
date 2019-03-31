@@ -4,6 +4,7 @@ import {
   View,
   Platform,
   TouchableHighlight,
+  SafeAreaView,
 } from 'react-native';
 
 import BoldText from '../AdaptiveText/BoldText';
@@ -40,30 +41,32 @@ class BrowserHeader extends Component {
     const title = this.props.scene.route.params.title;
 
     return (
-      <View>
-        <StatusBar
-          backgroundColor="#1ED2FF"
-          barStyle="light-content"
-        />
-        <View style={styles.container}>
-          <TouchableHighlight
-            hitSlop={{ top: 30, left: 30, bottom: 30, right: 30 }}
-            underlayColor="transparent"
-            onPress={() => {
-              this.props.navigation.goBack();
-            }}
-          >
-            <View>
-              <CancelIcon />
+      <SafeAreaView style={{ backgroundColor: '#1ED2FF' }}>
+        <View>
+          <StatusBar
+            backgroundColor="#1ED2FF"
+            barStyle="light-content"
+          />
+          <View style={styles.container}>
+            <TouchableHighlight
+              hitSlop={{ top: 30, left: 30, bottom: 30, right: 30 }}
+              underlayColor="transparent"
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
+            >
+              <View>
+                <CancelIcon />
+              </View>
+            </TouchableHighlight>
+            <View style={styles.titleContainer}>
+              <BoldText style={styles.title}>
+                {title}
+              </BoldText>
             </View>
-          </TouchableHighlight>
-          <View style={styles.titleContainer}>
-            <BoldText style={styles.title}>
-              {title}
-            </BoldText>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

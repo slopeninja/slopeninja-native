@@ -13,7 +13,6 @@ import SearchIcon from './SearchIcon';
 
 import { updateKeyword } from '../../actions/resorts';
 
-
 const styles = StyleSheet.create({
   searchBar: {
     backgroundColor: '#1ED2FF',

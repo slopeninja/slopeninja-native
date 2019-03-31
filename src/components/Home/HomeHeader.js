@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 
 import StatusBar from '../StatusBar/StatusBar';
@@ -29,18 +30,20 @@ const styles = StyleSheet.create({
 });
 
 const HomeHeader = () => (
-  <View>
-    <StatusBar
-      backgroundColor="#1ED2FF"
-      barStyle="light-content"
-    />
-    <View style={styles.container}>
-      <SlopeNinjaLogo />
-      <View style={styles.searchBarContainer}>
-        <SearchBar />
+  <SafeAreaView style={{ backgroundColor: '#1ED2FF' }}>
+    <View>
+      <StatusBar
+        backgroundColor="#1ED2FF"
+        barStyle="light-content"
+      />
+      <View style={styles.container}>
+        <SlopeNinjaLogo />
+        <View style={styles.searchBarContainer}>
+          <SearchBar />
+        </View>
       </View>
     </View>
-  </View>
+  </SafeAreaView>
 );
 
 export default HomeHeader;

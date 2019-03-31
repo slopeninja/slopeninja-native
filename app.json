@@ -4,8 +4,8 @@
     "description": "Snow updates for Tahoe Resorts",
     "slug": "slopeninaja-native",
     "privacy": "public",
-    "sdkVersion": "22.0.0",
-    "version": "1.0.2",
+    "sdkVersion": "32.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "primaryColor": "#1ED2FF",
     "icon": "./assets/icons/app.png",
@@ -15,23 +15,28 @@
       "hideExponentText": true
     },
     "packagerOpts": {
-      "assetExts": ["ttf", "mp4"]
+      "assetExts": [
+        "ttf",
+        "mp4"
+      ]
     },
     "ios": {
       "bundleIdentifier": "ninja.slope.app",
       "icon": "./assets/icons/iOSAppIcon.png",
-      "supportsTablet": true,
+      "supportsTablet": false,
       "buildNumber": "1.0.2",
       "config": {
         "googleMapsApiKey": "AIzaSyDI1850XSlrvboAaIj7_UNXBBsu8NjJ3Jg"
       },
-      "isRemoteJSEnabled": true,
-      "supportsTablet": false
+      "isRemoteJSEnabled": true
     },
     "android": {
       "package": "ninja.slope.app",
       "versionCode": 1,
-      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBQDS_lgbWzDMFBuduS9pA7eRQFqtUpG7M"
@@ -43,6 +48,11 @@
       "backgroundColor": "#1ED2FF"
     },
     "androidStatusBarColor": "#1ED2FF",
-    "scheme": "ninja"
+    "scheme": "ninja",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "githubUrl": "https://github.com/juliaqiuxy/slopeninja-native"
   }
 }

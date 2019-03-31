@@ -5,7 +5,7 @@ const {
   Path,
 } = Svg;
 
-const SunnyIcon = ({ width = 60, height = 60 }) => (
+const ClearDayIcon = ({ width = 60, height = 60 }) => (
   <Svg width={width} height={height} viewBox="0 0 100 100">
     <Path
       fill="#F9C900"
@@ -14,4 +14,4 @@ const SunnyIcon = ({ width = 60, height = 60 }) => (
   </Svg>
 );
 
-export default SunnyIcon;
+export default ClearDayIcon;
