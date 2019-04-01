@@ -1,6 +1,6 @@
 {
   "name": "slopeninaja-native",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Snow reports and road conditions for ski resorts in Tahoe",
   "author": "Julia Qiu <julia@juliaqiu.com>",
   "private": true,

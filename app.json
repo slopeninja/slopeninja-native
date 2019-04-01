@@ -5,7 +5,7 @@
     "slug": "slopeninaja-native",
     "privacy": "public",
     "sdkVersion": "32.0.0",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "primaryColor": "#1ED2FF",
     "icon": "./assets/icons/app.png",
@@ -24,7 +24,7 @@
       "bundleIdentifier": "ninja.slope.app",
       "icon": "./assets/icons/iOSAppIcon.png",
       "supportsTablet": false,
-      "buildNumber": "1.0.2",
+      "buildNumber": "1.0.4",
       "config": {
         "googleMapsApiKey": "AIzaSyDI1850XSlrvboAaIj7_UNXBBsu8NjJ3Jg"
       },
