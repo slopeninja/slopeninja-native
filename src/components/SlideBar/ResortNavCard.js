@@ -112,15 +112,12 @@ const ResortBookmarkButton = ({
   <View style={styles.bookmarkWrapper}>
     <TouchableHighlight
       onPress={() => {
-        if (!favorite) {
-          onResortClick(resort);
-        }
         onFavoritePress(resort.shortName, !favorite);
       }}
       hitSlop={{ top: 16, left: 16, bottom: 16, right: 16 }}
       underlayColor="transparent"
     >
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }} pointerEvents="none">
         {
           favorite ? (
             <BookmarkIcon />
@@ -175,7 +172,7 @@ const ResortNavCard = (props) => {
             onFavoritePress={props.mutateFavoriteResorts}
             onResortClick={onResortClick}
           />
-          <View style={styles.resortLogoContainer}>
+          <View style={styles.resortLogoContainer} pointerEvents="none">
             <ResortLogo />
           </View>
           <View style={styles.resortInfoContainer}>
